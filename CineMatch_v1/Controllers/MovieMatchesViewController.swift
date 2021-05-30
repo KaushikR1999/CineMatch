@@ -1,10 +1,3 @@
-//
-//  MovieMatchesViewController.swift
-//  CineMatch_v1
-//
-//  Created by L Kaushik Rangaraj on 28/5/21.
-//
-
 import UIKit
 
 class MovieMatchesViewController: UIViewController {
