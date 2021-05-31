@@ -1,10 +1,17 @@
-# CineMatch_v1
+# CineMatch
+
+## **NUS Orbital (CP2106 Independent Software Development Project)**
+
+Kaushik Rangaraj & Kaushik Kumar
+
+## **How to Setup**
 
 1. To use CineMatch, clone from Github. Open XCode and click “Clone an existing project” and paste the repository URL. 
 2. If the following message shows up when running the simulator:  “"No supported iOS devices are available. Connect a device to run your application or choose a simulated device as the destination”, check if XCode version is up to date. Else, change iOS version to relevant version (i.e. 14.3 or lower)
 3. Build and run the project
 4. Below are the relevant descriptions of each page of the app to support new users
 
+## **CineMatch Features**
 
 **Login Page**
 
