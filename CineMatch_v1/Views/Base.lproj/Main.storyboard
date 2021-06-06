@@ -1049,7 +1049,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="LWO-E1-t5q" kind="presentation" identifier="backToPS" modalPresentationStyle="fullScreen" id="ual-pA-hd7"/>
                         <segue destination="aYw-7h-m5J" kind="presentation" identifier="psiToSearch" modalPresentationStyle="fullScreen" id="vS6-md-o8P"/>
                         <segue destination="QWp-49-PLi" kind="presentation" identifier="psiToProfile" modalPresentationStyle="fullScreen" id="D3b-de-Uzr"/>
                         <segue destination="vkV-1G-S1i" kind="presentation" identifier="psiToHome" modalPresentationStyle="fullScreen" id="Pfa-BH-wqC"/>
@@ -1217,7 +1216,6 @@
                         <segue destination="QWp-49-PLi" kind="presentation" identifier="movieSwipeToProfile" modalPresentationStyle="fullScreen" id="obW-WR-9p8"/>
                         <segue destination="aYw-7h-m5J" kind="presentation" identifier="movieSwipeToSearch" modalPresentationStyle="fullScreen" id="qdL-wU-Nqt"/>
                         <segue destination="GVI-D6-8Qd" kind="presentation" identifier="movieSwipeToMovieMatches" modalPresentationStyle="fullScreen" id="HE6-PU-k7K"/>
-                        <segue destination="Jla-P7-URa" kind="presentation" identifier="movieSwipeToPSI" modalPresentationStyle="fullScreen" id="YaV-qv-VJv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCv-cf-TFA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1347,7 +1345,6 @@ Stars: Tobey Maguire, Kirsten Dunst, Alfred Molina</string>
                         <segue destination="vkV-1G-S1i" kind="presentation" identifier="movieInfoToHome" modalPresentationStyle="fullScreen" id="7zB-Wi-GUa"/>
                         <segue destination="QWp-49-PLi" kind="presentation" identifier="movieInfoToProfile" modalPresentationStyle="fullScreen" id="eXb-Rm-bHp"/>
                         <segue destination="aYw-7h-m5J" kind="presentation" identifier="movieInfoToSearch" modalPresentationStyle="fullScreen" id="FBe-OC-umm"/>
-                        <segue destination="Jla-P7-URa" kind="presentation" identifier="movieInfoToPastSessionsInfo" modalPresentationStyle="fullScreen" id="Xsk-I1-uKH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QqP-Qq-Ahx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1529,7 +1526,7 @@ Stars: Tobey Maguire, Kirsten Dunst, Alfred Molina</string>
                                             <color key="titleColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="backPressed:" destination="GVI-D6-8Qd" eventType="touchUpInside" id="ElQ-uZ-Iga"/>
+                                            <action selector="backPressed:" destination="GVI-D6-8Qd" eventType="touchUpInside" id="1Sf-vk-ZzR"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CineMatches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdP-KB-zUV">
@@ -1566,7 +1563,6 @@ Stars: Tobey Maguire, Kirsten Dunst, Alfred Molina</string>
                     </view>
                     <connections>
                         <segue destination="FpS-DB-sO4" kind="presentation" identifier="movieMatchesToMovieInfo" modalPresentationStyle="fullScreen" id="xn5-mo-u8R"/>
-                        <segue destination="onS-Vl-uAq" kind="presentation" identifier="movieMatchesToMovieSwipe" modalPresentationStyle="fullScreen" id="XIy-yZ-hu2"/>
                         <segue destination="aYw-7h-m5J" kind="presentation" identifier="movieMatchesToSearch" modalPresentationStyle="fullScreen" id="DTO-qX-Yqz"/>
                         <segue destination="QWp-49-PLi" kind="presentation" identifier="movieMatchesToProfile" modalPresentationStyle="fullScreen" id="OKg-hz-AVW"/>
                         <segue destination="vkV-1G-S1i" kind="presentation" identifier="movieMatchesToHome" modalPresentationStyle="fullScreen" id="HfT-j2-d51"/>
@@ -1578,13 +1574,10 @@ Stars: Tobey Maguire, Kirsten Dunst, Alfred Molina</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZwB-a3-z0V"/>
-        <segue reference="u2I-dg-K2X"/>
-        <segue reference="t05-BT-3iA"/>
-        <segue reference="ual-pA-hd7"/>
-        <segue reference="vS6-md-o8P"/>
-        <segue reference="D3b-de-Uzr"/>
-        <segue reference="Pfa-BH-wqC"/>
+        <segue reference="xn5-mo-u8R"/>
+        <segue reference="DTO-qX-Yqz"/>
+        <segue reference="eXb-Rm-bHp"/>
+        <segue reference="7zB-Wi-GUa"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Avengers Endgame Poster" width="190" height="268.5"/>

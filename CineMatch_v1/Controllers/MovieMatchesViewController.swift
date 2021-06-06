@@ -11,7 +11,7 @@ class MovieMatchesViewController: UIViewController {
 
 
     @IBAction func backPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "movieMatchesToMovieSwipe", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -30,4 +30,5 @@ class MovieMatchesViewController: UIViewController {
     @IBAction func profilePressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "movieMatchesToProfile", sender: self)
     }
+    
 }

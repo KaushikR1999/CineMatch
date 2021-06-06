@@ -10,7 +10,7 @@ class PastSessionsInfoViewController: UIViewController {
     
 
     @IBAction func backPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "backToPS", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func moviePressed(_ sender: UIButton) {

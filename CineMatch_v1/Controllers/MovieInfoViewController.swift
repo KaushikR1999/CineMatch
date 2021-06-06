@@ -10,7 +10,7 @@ class MovieInfoViewController: UIViewController {
     
 
     @IBAction func backPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "movieInfoToPastSessionsInfo", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func homePressed(_ sender: UIButton) {

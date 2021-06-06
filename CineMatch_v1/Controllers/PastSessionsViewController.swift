@@ -9,7 +9,7 @@ class PastSessionsViewController: UIViewController {
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "pastSessionsToHome", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func sessionPressed(_ sender: UIButton) {

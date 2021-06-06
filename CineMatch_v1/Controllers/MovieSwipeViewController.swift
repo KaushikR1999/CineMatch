@@ -25,6 +25,6 @@ class MovieSwipeViewController: UIViewController {
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "movieSwipeToPSI", sender: self)
+        self.dismiss(animated: true, completion: nil)
     }
 }
