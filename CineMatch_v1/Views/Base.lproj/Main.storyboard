@@ -544,7 +544,7 @@
                                 </constraints>
                                 <color key="tintColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="barTintColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="go"/>
                             </searchBar>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-22-FUi" userLabel="Tab Bar">
                                 <rect key="frame" x="31" y="825" width="353" height="37"/>
@@ -1575,9 +1575,9 @@ Stars: Tobey Maguire, Kirsten Dunst, Alfred Molina</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="xn5-mo-u8R"/>
-        <segue reference="DTO-qX-Yqz"/>
-        <segue reference="eXb-Rm-bHp"/>
-        <segue reference="7zB-Wi-GUa"/>
+        <segue reference="e9y-uB-pEj"/>
+        <segue reference="EwN-7A-EXT"/>
+        <segue reference="lbG-Ds-ydt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Avengers Endgame Poster" width="190" height="268.5"/>
