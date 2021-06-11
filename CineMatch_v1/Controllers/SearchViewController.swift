@@ -12,7 +12,6 @@ class SearchViewController: UIViewController {
         self.performSegue(withIdentifier: "searchToHome", sender: self)
     }
     
-    
     @IBAction func profilePressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "searchToProfile", sender: self)
     }

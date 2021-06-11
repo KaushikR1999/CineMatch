@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LHf-Zw-tOT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWZ-5e-Vhc">
-                                <rect key="frame" x="68" y="543" width="278" height="30"/>
+                                <rect key="frame" x="68" y="587" width="278" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="LOGIN">
                                     <color key="titleColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -32,25 +32,25 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email Address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HtT-Xo-ozy">
-                                <rect key="frame" x="68" y="361" width="278" height="34"/>
+                                <rect key="frame" x="68" y="405" width="278" height="34"/>
                                 <color key="textColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1t8-bQ-Qwd">
-                                <rect key="frame" x="68" y="421" width="278" height="34"/>
+                                <rect key="frame" x="68" y="465" width="278" height="34"/>
                                 <color key="textColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find the perfect movie." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acx-ln-QgV">
-                                <rect key="frame" x="120" y="265" width="177" height="20.5"/>
+                                <rect key="frame" x="120" y="309" width="177" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="R48-ro-2vz">
-                                <rect key="frame" x="70" y="197" width="277" height="60"/>
+                                <rect key="frame" x="70" y="241" width="277" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CINE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aax-jR-Wx9">
                                         <rect key="frame" x="0.0" y="0.0" width="109.5" height="60"/>
@@ -109,14 +109,17 @@
                             <constraint firstItem="1t8-bQ-Qwd" firstAttribute="leading" secondItem="SWZ-5e-Vhc" secondAttribute="leading" id="wOX-SM-ODM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7Um-gg-5Hi"/>
                     <connections>
+                        <outlet property="emailTextField" destination="HtT-Xo-ozy" id="GAS-Cb-oaV"/>
+                        <outlet property="passwordTextField" destination="1t8-bQ-Qwd" id="s6F-mP-PZT"/>
                         <segue destination="aky-L1-qez" kind="presentation" identifier="goToSignUp" modalPresentationStyle="fullScreen" id="Wjt-Tn-DuQ"/>
                         <segue destination="vkV-1G-S1i" kind="presentation" identifier="loginToHome" modalPresentationStyle="fullScreen" id="G2z-6h-xe4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="80.357142857142847"/>
+            <point key="canvasLocation" x="928.98550724637687" y="80.357142857142847"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="NAC-HC-3Rg">
@@ -181,13 +184,17 @@
                         <viewLayoutGuide key="safeArea" id="LLd-p6-I8l"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="cNg-TY-s2Q"/>
                     <connections>
+                        <outlet property="emailTextField" destination="uRG-HG-xul" id="fYT-7s-qW4"/>
+                        <outlet property="passwordTextField" destination="fQy-if-5rh" id="0H7-x1-1bI"/>
+                        <outlet property="usernameTextField" destination="wwS-gd-LmJ" id="QCz-4p-9P5"/>
                         <segue destination="vkV-1G-S1i" kind="presentation" identifier="signUpToHome" modalPresentationStyle="fullScreen" id="atq-RR-wNK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8cH-Wn-Y1b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1037.68115942029" y="79.6875"/>
+            <point key="canvasLocation" x="1947.826086956522" y="79.6875"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="sKs-dL-aQW">
@@ -198,7 +205,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="42" translatesAutoresizingMaskIntoConstraints="NO" id="vW7-uB-pAe" userLabel="Friends">
-                                <rect key="frame" x="65" y="196.5" width="284" height="283.5"/>
+                                <rect key="frame" x="65" y="154" width="284" height="326"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wMJ-gM-GE3" userLabel="MJ">
                                         <rect key="frame" x="0.0" y="0.0" width="284" height="66"/>
@@ -234,10 +241,10 @@
                                         </constraints>
                                     </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icO-Pa-Afj" userLabel="HO">
-                                        <rect key="frame" x="0.0" y="108" width="284" height="67.5"/>
+                                        <rect key="frame" x="0.0" y="108" width="284" height="110"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfR-fi-Xje">
-                                                <rect key="frame" x="45" y="0.0" width="242" height="67.5"/>
+                                                <rect key="frame" x="45" y="0.0" width="242" height="110"/>
                                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Harry Osborn">
                                                     <color key="titleColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -249,7 +256,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyI-a7-6A0" userLabel="Harry Osborn">
-                                                <rect key="frame" x="0.0" y="0.0" width="45" height="67.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="110"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="45" id="dqe-bJ-bIZ"/>
                                                 </constraints>
@@ -267,7 +274,7 @@
                                         </constraints>
                                     </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LyR-fb-5ea" userLabel="GS">
-                                        <rect key="frame" x="0.0" y="217.5" width="284" height="66"/>
+                                        <rect key="frame" x="0.0" y="260" width="284" height="66"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igs-HA-bHQ">
                                                 <rect key="frame" x="45" y="0.0" width="242" height="66"/>
@@ -308,8 +315,8 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="byj-GT-np6" userLabel="Tab Bar">
                                 <rect key="frame" x="31" y="825" width="353" height="37"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIV-yj-v8n">
-                                        <rect key="frame" x="8" y="3" width="41" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIV-yj-v8n">
+                                        <rect key="frame" x="8" y="3" width="41" height="31"/>
                                         <state key="normal" title="Home">
                                             <color key="titleColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -323,8 +330,8 @@
                                             <action selector="profilePressed:" destination="vkV-1G-S1i" eventType="touchUpInside" id="Bra-OE-3z3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIZ-vz-aBm">
-                                        <rect key="frame" x="152" y="3" width="48" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIZ-vz-aBm">
+                                        <rect key="frame" x="152" y="3" width="48" height="31"/>
                                         <state key="normal" title="Search">
                                             <color key="titleColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -346,16 +353,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgl-e1-H4H" userLabel="TitleBar">
-                                <rect key="frame" x="65" y="62" width="284" height="69.5"/>
+                                <rect key="frame" x="65" y="62" width="284" height="27"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf3-I1-IrP">
-                                        <rect key="frame" x="73" y="8" width="138" height="23"/>
+                                        <rect key="frame" x="73" y="8" width="138" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on a friend to start a session" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6E-bZ-K2n">
-                                        <rect key="frame" x="14" y="39" width="256" height="19.5"/>
+                                        <rect key="frame" x="14" y="16" width="256" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -408,6 +415,7 @@
                             <constraint firstItem="byj-GT-np6" firstAttribute="top" secondItem="VrH-4a-8nI" secondAttribute="top" constant="825" id="tOI-cU-nEC"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="qVE-zj-1HT"/>
                     <connections>
                         <segue destination="aYw-7h-m5J" kind="presentation" identifier="homeToSearch" modalPresentationStyle="fullScreen" id="e9y-uB-pEj"/>
                         <segue destination="QWp-49-PLi" kind="presentation" identifier="homeToProfile" modalPresentationStyle="fullScreen" id="0cN-W6-LW3"/>
@@ -433,7 +441,7 @@
                                     <color key="titleColor" systemColor="systemRedColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="logOutPressed:" destination="QWp-49-PLi" eventType="touchUpInside" id="XpE-kI-e4R"/>
+                                    <action selector="logOutPressed:" destination="QWp-49-PLi" eventType="touchUpInside" id="9yV-2a-eYY"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="@UserName" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2QC-nF-2k2">
@@ -517,11 +525,12 @@
                         <viewLayoutGuide key="safeArea" id="czl-mW-h20"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="2vv-dw-EiD"/>
                     <connections>
                         <outlet property="userEmail" destination="qpD-i5-tYd" id="5kC-4H-DuO"/>
                         <segue destination="vkV-1G-S1i" kind="presentation" identifier="profileToHome" modalPresentationStyle="fullScreen" id="WsI-Wh-WfS"/>
                         <segue destination="aYw-7h-m5J" kind="presentation" identifier="profileToSearch" modalPresentationStyle="fullScreen" id="T4E-1w-6ew"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logOut" modalPresentationStyle="fullScreen" id="Gt9-5T-LZg"/>
+                        <segue destination="LHf-Zw-tOT" kind="presentation" identifier="logOut" modalPresentationStyle="fullScreen" id="Gt9-5T-LZg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="310-Y2-iPy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -549,8 +558,8 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-22-FUi" userLabel="Tab Bar">
                                 <rect key="frame" x="31" y="825" width="353" height="37"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBD-VD-MJt">
-                                        <rect key="frame" x="152" y="3" width="48" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBD-VD-MJt">
+                                        <rect key="frame" x="152" y="3" width="48" height="31"/>
                                         <state key="normal" title="Search">
                                             <color key="titleColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -564,8 +573,8 @@
                                             <action selector="profilePressed:" destination="aYw-7h-m5J" eventType="touchUpInside" id="vPD-71-ZE6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kI-6N-eWg">
-                                        <rect key="frame" x="8" y="3" width="41" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kI-6N-eWg">
+                                        <rect key="frame" x="8" y="3" width="41" height="31"/>
                                         <state key="normal" title="Home">
                                             <color key="titleColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -599,6 +608,7 @@
                             <constraint firstItem="Dba-9h-pZn" firstAttribute="centerX" secondItem="GUp-22-FUi" secondAttribute="centerX" id="uEi-kd-nw2"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="nid-Gj-bpe"/>
                     <connections>
                         <segue destination="vkV-1G-S1i" kind="presentation" identifier="searchToHome" modalPresentationStyle="fullScreen" id="lbG-Ds-ydt"/>
                         <segue destination="QWp-49-PLi" kind="presentation" identifier="searchToProfile" modalPresentationStyle="fullScreen" id="EwN-7A-EXT"/>
@@ -769,6 +779,7 @@
                         <viewLayoutGuide key="safeArea" id="9Bx-B0-y4i"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="QNJ-FS-44r"/>
                     <connections>
                         <segue destination="vkV-1G-S1i" kind="presentation" identifier="pastSessionsToHome" modalPresentationStyle="fullScreen" id="Gz8-x9-FQG"/>
                         <segue destination="QWp-49-PLi" kind="presentation" identifier="pastSessionsToProfile" modalPresentationStyle="fullScreen" id="Tpb-8W-rSy"/>
@@ -1572,12 +1583,30 @@ Stars: Tobey Maguire, Kirsten Dunst, Alfred Molina</string>
             </objects>
             <point key="canvasLocation" x="2069.5652173913045" y="3202.9017857142858"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zDU-ei-RO0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LHf-Zw-tOT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RDk-gp-zL2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jbj-Wv-fgI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m6l-sV-Ot7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="80.357142857142847"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="xn5-mo-u8R"/>
-        <segue reference="e9y-uB-pEj"/>
-        <segue reference="EwN-7A-EXT"/>
-        <segue reference="lbG-Ds-ydt"/>
+        <segue reference="T4E-1w-6ew"/>
+        <segue reference="0cN-W6-LW3"/>
+        <segue reference="WsI-Wh-WfS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Avengers Endgame Poster" width="190" height="268.5"/>

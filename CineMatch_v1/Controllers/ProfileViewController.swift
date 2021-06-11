@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
 
@@ -18,7 +19,16 @@ class ProfileViewController: UIViewController {
         self.performSegue(withIdentifier: "profileToSearch", sender: self)
     }
     
-    @IBAction func logOutPressed(_ sender: Any) {
+    
+    @IBAction func logOutPressed(_ sender: UIButton) {
+//        do {
+//            try Auth.auth().signOut()
+//            navigationController?.popToRootViewController(animated: true)
+//            print ("Logging out")
+//        } catch let signOutError as NSError {
+//            print ("Error signing out: %@", signOutError)
+//        }
         self.performSegue(withIdentifier: "logOut", sender: self)
     }
+    
 }

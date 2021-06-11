@@ -8,7 +8,6 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
     @IBAction func searchPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "homeToSearch", sender: self)
     }
