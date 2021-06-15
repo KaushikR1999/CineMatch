@@ -17,7 +17,6 @@
 		392B930B2660DAA000686C41 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B930A2660DAA000686C41 /* HomeViewController.swift */; };
 		392B930D2660E13500686C41 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B930C2660E13500686C41 /* ProfileViewController.swift */; };
 		392B930F2660E19B00686C41 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B930E2660E19B00686C41 /* SearchViewController.swift */; };
-		392B93112661039800686C41 /* PastSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B93102661039800686C41 /* PastSessionsViewController.swift */; };
 		392B9313266103A800686C41 /* PastSessionsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B9312266103A800686C41 /* PastSessionsInfoViewController.swift */; };
 		392B9315266103C200686C41 /* MovieSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B9314266103C200686C41 /* MovieSwipeViewController.swift */; };
 		392B9317266103CE00686C41 /* MovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B9316266103CE00686C41 /* MovieInfoViewController.swift */; };
@@ -40,7 +39,6 @@
 		392B930A2660DAA000686C41 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		392B930C2660E13500686C41 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		392B930E2660E19B00686C41 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		392B93102661039800686C41 /* PastSessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastSessionsViewController.swift; sourceTree = "<group>"; };
 		392B9312266103A800686C41 /* PastSessionsInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastSessionsInfoViewController.swift; sourceTree = "<group>"; };
 		392B9314266103C200686C41 /* MovieSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSwipeViewController.swift; sourceTree = "<group>"; };
 		392B9316266103CE00686C41 /* MovieInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 				392B930A2660DAA000686C41 /* HomeViewController.swift */,
 				392B930C2660E13500686C41 /* ProfileViewController.swift */,
 				392B930E2660E19B00686C41 /* SearchViewController.swift */,
-				392B93102661039800686C41 /* PastSessionsViewController.swift */,
 				392B9312266103A800686C41 /* PastSessionsInfoViewController.swift */,
 				392B9314266103C200686C41 /* MovieSwipeViewController.swift */,
 				392B9316266103CE00686C41 /* MovieInfoViewController.swift */,
@@ -269,7 +266,6 @@
 				396BB875267389AD00D9BC8E /* UserDetails.swift in Sources */,
 				392B930F2660E19B00686C41 /* SearchViewController.swift in Sources */,
 				392B9315266103C200686C41 /* MovieSwipeViewController.swift in Sources */,
-				392B93112661039800686C41 /* PastSessionsViewController.swift in Sources */,
 				392B930B2660DAA000686C41 /* HomeViewController.swift in Sources */,
 				392B92EE2660A53600686C41 /* LoginViewController.swift in Sources */,
 				392B92EA2660A53600686C41 /* AppDelegate.swift in Sources */,
