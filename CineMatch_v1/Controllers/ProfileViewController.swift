@@ -11,15 +11,6 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-//    @IBAction func homePressed(_ sender: UIButton) {
-//        self.performSegue(withIdentifier: "profileToHome", sender: self)
-//    }
-//
-//    @IBAction func searchPressed(_ sender: UIButton) {
-//        self.performSegue(withIdentifier: "profileToSearch", sender: self)
-//    }
-    
-    
     @IBAction func logOutPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()

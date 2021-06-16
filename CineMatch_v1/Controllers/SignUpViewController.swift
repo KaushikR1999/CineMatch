@@ -15,13 +15,12 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-//    @IBAction func backPressed(_ sender: UIButton) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        usernameTextField.text = ""
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -34,7 +33,10 @@ class SignUpViewController: UIViewController {
         if let username = usernameTextField.text, let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let e = error {
-                    print (e.localizedDescription)
+                    // print (e.localizedDescription)
+                    let alert = UIAlertController(title: "Invalid Email/Password!", message: e.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 } else {
                     
                     // Save Username
