@@ -18,6 +18,8 @@ class SignUpViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        
+        // clears the TextFields when User comes to page
         usernameTextField.text = ""
         emailTextField.text = ""
         passwordTextField.text = ""
@@ -30,22 +32,26 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpPressed(_ sender: UIButton) {
         
-        if let username = usernameTextField.text, let email = emailTextField.text, let password = passwordTextField.text {
+        if let username = usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+           let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+           let password = passwordTextField.text?.trimmingCharacters(in: .whitespaces) {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let e = error {
-                    // print (e.localizedDescription)
+                    
+                    // Pop up alert in case of invalid entry
+                    
                     let alert = UIAlertController(title: "Invalid Email/Password!", message: e.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
+                    
                 } else {
                     
-                    // Save Username
-//                    self.db.collection("personal details").addDocument(data: [
-//                        "Username": username,
-//                        "UID": Auth.auth().currentUser?.uid
-//                    ])
+                    // Save Username in User Details Collection
+                    
+                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).setData(["Username": username])
                     
                     // Navigate to the HomeViewController
+
                     self.performSegue(withIdentifier: "signUpToHome", sender: self)
                 }
             }
