@@ -57,8 +57,9 @@ class SignUpViewController: UIViewController {
                     self.db.collection("User Details").document(Auth.auth().currentUser!.uid).setData(["Username": username])
                     
                     // Navigate to the HomeViewController
-
+                    
                     self.performSegue(withIdentifier: "signUpToHome", sender: self)
+                    self.view.endEditing(true)
                 }
             }
         }

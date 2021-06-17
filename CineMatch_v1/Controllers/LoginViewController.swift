@@ -46,6 +46,7 @@ class LoginViewController: UIViewController {
                     // Segue from screen to screen & not button to screen as segueing from button will override this function and go to Home Page even if user has input invalid entry
                     
                     self.performSegue(withIdentifier: "loginToHome", sender: self)
+                    self.view.endEditing(true)
                 }
             }
         }
