@@ -25,6 +25,12 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                 print("Document does not exist")
             }
         }
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // Function to allow User to modify username. User has to press enter for change to be updated
