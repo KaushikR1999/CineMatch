@@ -26,6 +26,7 @@
 		392B9317266103CE00686C41 /* MovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B9316266103CE00686C41 /* MovieInfoViewController.swift */; };
 		392B931926611AC900686C41 /* MovieMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B931826611AC900686C41 /* MovieMatchesViewController.swift */; };
 		93E4D04FF49D4A81E113F5E3 /* Pods_CineMatch_v1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3933FDB22B3CDB6FF3ECF56 /* Pods_CineMatch_v1.framework */; };
+		B16E81AB267DA78800045056 /* CountryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E81AA267DA78800045056 /* CountryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		3BB3476C801139DD1FB5AB40 /* Pods-CineMatch_v1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineMatch_v1.release.xcconfig"; path = "Target Support Files/Pods-CineMatch_v1/Pods-CineMatch_v1.release.xcconfig"; sourceTree = "<group>"; };
 		561D04CA5DDDECE131D6AC23 /* Pods-CineMatch_v1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineMatch_v1.debug.xcconfig"; path = "Target Support Files/Pods-CineMatch_v1/Pods-CineMatch_v1.debug.xcconfig"; sourceTree = "<group>"; };
 		A3933FDB22B3CDB6FF3ECF56 /* Pods_CineMatch_v1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineMatch_v1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B16E81AA267DA78800045056 /* CountryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				39064E692679AEEB008E9876 /* Friend.swift */,
+				B16E81AA267DA78800045056 /* CountryManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				39064E6726797F3D008E9876 /* FriendSessionCell.swift in Sources */,
 				392B931926611AC900686C41 /* MovieMatchesViewController.swift in Sources */,
 				392B930F2660E19B00686C41 /* SearchViewController.swift in Sources */,
+				B16E81AB267DA78800045056 /* CountryManager.swift in Sources */,
 				392B9315266103C200686C41 /* MovieSwipeViewController.swift in Sources */,
 				392B930B2660DAA000686C41 /* HomeViewController.swift in Sources */,
 				392B92EE2660A53600686C41 /* LoginViewController.swift in Sources */,

@@ -6,6 +6,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         
         // clears the TextFields when User comes to page

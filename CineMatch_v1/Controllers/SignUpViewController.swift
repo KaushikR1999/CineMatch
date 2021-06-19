@@ -43,7 +43,7 @@ class SignUpViewController: UIViewController {
            let password = passwordTextField.text?.trimmingCharacters(in: .whitespaces) {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let e = error {
-                    
+
                     // Pop up alert in case of invalid entry
                     
                     let alert = UIAlertController(title: "Invalid Email/Password!", message: e.localizedDescription, preferredStyle: .alert)
@@ -52,9 +52,9 @@ class SignUpViewController: UIViewController {
                     
                 } else {
                     
-                    // Save Username in User Details Collection
+                    // Save Username and default region as United States in User Details Collection
+                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).setData(["Username": username, "Region": "United States"])
                     
-                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).setData(["Username": username])
                     
                     // Navigate to the HomeViewController
                     
