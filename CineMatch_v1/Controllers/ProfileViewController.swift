@@ -2,6 +2,10 @@ import UIKit
 import Firebase
 
 class ProfileViewController: UIViewController, UITextFieldDelegate {
+
+    
+    @IBOutlet weak var profilePicture: UIImageView!
+
     
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userName: UITextField!
@@ -17,9 +21,27 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        // Profile Picture
+        
+        profilePicture.layer.masksToBounds = true
+        profilePicture.layer.cornerRadius = profilePicture.bounds.width/2.0
+        
+        profilePicture.isUserInteractionEnabled = true
+        
+        // tapping on profile picture region will bring up action sheet
+        profilePicture.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
+        )
+        
+        
+        // Picker View
         regionPickerView.dataSource = self
         regionPickerView.delegate = self
         
+        
+        // Text Field
         regionTextField.delegate = self
         
         // tapping on text field will bring up the picker view
@@ -42,8 +64,11 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
         
         
-        
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+    }
+    
+    @objc func didTapChangeProfilePic() {
+        presentPhotoActionSheet()
     }
     
     @objc func dismissKeyboard() {
@@ -119,6 +144,67 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
 }
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func presentPhotoActionSheet() {
+        let actionSheet = UIAlertController(title: "Profile Picture",
+                                            message: "How would you like to select a picture?",
+                                            preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: nil))
+        
+        actionSheet.addAction(UIAlertAction(title: "Take Photo",
+                                            style: .default,
+                                            handler: {[weak self] _ in
+                                                self?.presentCamera()
+                                            }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Choose Photo",
+                                            style: .default,
+                                            handler: {[weak self] _ in
+                                                self?.presentPhotoPicker()
+                                            }))
+        present(actionSheet, animated: true)
+    }
+    
+    func presentCamera() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    
+    func presentPhotoPicker() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        
+        self.profilePicture.image = selectedImage
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+}
+
 
 
 
