@@ -11,6 +11,8 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.autocorrectionType = .no
 
         // Do any additional setup after loading the view.
         
@@ -52,8 +54,11 @@ class SignUpViewController: UIViewController {
                     
                 } else {
                     
-                    // Save Username and default region as United States in User Details Collection
-                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).setData(["Username": username, "Region": "United States"])
+                    /*Save Username and default region as United States in User Details Collection
+                     Save profileImageURL which will be used to retrieve profile pic as empty first
+ 
+ */
+                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).setData(["Username": username, "Region": "United States", "profileImageURL": ""])
                     
                     
                     // Navigate to the HomeViewController

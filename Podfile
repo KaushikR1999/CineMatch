@@ -8,6 +8,7 @@ target 'CineMatch_v1' do
   # Firebase
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage' 
   
   # Keyboard Manager
   pod 'IQKeyboardManagerSwift', '6.5.0'

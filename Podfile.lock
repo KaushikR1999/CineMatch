@@ -226,6 +226,9 @@ PODS:
   - Firebase/Firestore (8.1.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 8.1.0)
+  - Firebase/Storage (8.1.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 8.1.0)
   - FirebaseAuth (8.1.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
@@ -252,6 +255,9 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 2.30908.0)
+  - FirebaseStorage (8.1.0):
+    - FirebaseCore (~> 8.0)
+    - GTMSessionFetcher/Core (~> 1.5)
   - GoogleDataTransport (9.0.1):
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
@@ -308,6 +314,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
+  - Firebase/Storage
   - IQKeyboardManagerSwift (= 6.5.0)
 
 SPEC REPOS:
@@ -319,6 +326,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
+    - FirebaseStorage
     - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
@@ -337,6 +345,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 389c4ce9a7cce4a7e25eb22326b4bee0050557b2
   FirebaseCoreDiagnostics: 3e249cee3de5c5f9cfd6cc2a19997231286fec11
   FirebaseFirestore: c4be8314e9fa156f44b54025f7a98ecbff6971a6
+  FirebaseStorage: 5b5958efaf84fb991568ad36f157f60c76bdcd80
   GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
   GoogleUtilities: f8a43108b38a68eebe8b3540e1f4f2d28843ce20
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
@@ -347,6 +356,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: bc0fc7c7a22054126506cd0e1545039c7f60974d
+PODFILE CHECKSUM: c409224980940ad2149d57945ea6ef76e29c019c
 
 COCOAPODS: 1.10.1
