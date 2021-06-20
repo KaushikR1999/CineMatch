@@ -4,9 +4,7 @@ import FirebaseStorage
 
 class ProfileViewController: UIViewController, UITextFieldDelegate {
     
-    
     @IBOutlet weak var profilePicture: UIImageView!
-    
     
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userName: UITextField!
@@ -17,12 +15,12 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     var countryManager = CountryManager()
     
+    var username : String = ""
+    
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         // Profile Picture
         
@@ -58,11 +56,12 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         users.getDocument { (document, error) in
             if let document = document, document.exists {
                 self.userName.text = document.data()!["Username"] as? String
+                self.username = self.userName.text!
                 self.regionTextField.text = document.data()!["Region"] as? String
                 
                 /* if profileURLString is empty, display default system icon if not
                  retrieve profileURLString and display the picture from the URL
- */
+                 */
                 
                 let profileURLString = document.data()!["profileImageURL"] as? String
                 if profileURLString == "" {
@@ -110,13 +109,47 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     // Function to allow User to modify username. User has to press enter for change to be updated
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if Auth.auth().currentUser != nil {
-            self.db.collection("User Details").document(Auth.auth().currentUser!.uid).updateData([
-                "Username": textField.text!
-            ]) { err in
-                if let err = err {
-                    print("Error updating document: \(err)")
+
+            db.collection("Usernames").document(textField.text!).getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    
+                    let message = "Please choose a different username"
+                    let alert = UIAlertController(title: "Username taken", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    self.userName.text = self.username
+                    
                 } else {
-                    // print("Document successfully updated")
+                    
+                    // Deletes the username from collection
+                    self.db.collection("Usernames").document(self.username).delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        } else {
+        
+                            // Add a new username in collection "Usernames"
+                            self.db.collection("Usernames").document(textField.text!).setData([:]) { err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    self.username = textField.text!
+                                    // print("Document successfully written!")
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Updates the username of user in User Details collection
+                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).updateData([
+                        "Username": textField.text!
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            // print("Document successfully updated")
+                        }
+                    }
                 }
             }
         }
