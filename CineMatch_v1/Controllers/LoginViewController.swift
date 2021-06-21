@@ -7,8 +7,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-
-    
     override func viewDidAppear(_ animated: Bool) {
 
         // checks if there is a user logged in, if so don't need to present log out page
@@ -35,12 +33,6 @@ class LoginViewController: UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-//    func validateFields() -> String? {
-//
-//        // Check all fields are filled in
-//        return nil
-//    }
     
     // Function to lead from Login Page to Home Page if user input valid entry
     @IBAction func loginPressed(_ sender: UIButton) {

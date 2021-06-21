@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 
-class ProfileViewController: UIViewController, UITextFieldDelegate {
+class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profilePicture: UIImageView!
     
@@ -83,68 +83,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     @objc func didTapChangeProfilePic() {
         presentPhotoActionSheet()
     }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == regionTextField {
-            return false
-        }
-        return true
-    }
-    
-    // Function to allow User to modify username. User has to press enter for change to be updated
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if Auth.auth().currentUser != nil {
 
-            db.collection("Usernames").document(textField.text!).getDocument { (document, error) in
-                if let document = document, document.exists {
-                    // let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                    
-                    let message = "Please choose a different username"
-                    let alert = UIAlertController(title: "Username taken", message: message, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    self.userName.text = self.username
-                    
-                } else {
-                    
-                    // Deletes the username from collection
-                    self.db.collection("Usernames").document(self.username).delete() { err in
-                        if let err = err {
-                            print("Error removing document: \(err)")
-                        } else {
-        
-                            // Add a new username in collection "Usernames"
-                            self.db.collection("Usernames").document(textField.text!).setData([:]) { err in
-                                if let err = err {
-                                    print("Error writing document: \(err)")
-                                } else {
-                                    self.username = textField.text!
-                                    // print("Document successfully written!")
-                                }
-                            }
-                        }
-                    }
-                    
-                    // Updates the username of user in User Details collection
-                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).updateData([
-                        "Username": textField.text!
-                    ]) { err in
-                        if let err = err {
-                            print("Error updating document: \(err)")
-                        } else {
-                            // print("Document successfully updated")
-                        }
-                    }
-                }
-            }
-        }
-        return true
-    }
-    
     @IBAction func logOutPressed(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
@@ -155,6 +94,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
+
+// MARK: - PickerView Delegate Methods
 
 extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -191,6 +132,8 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
 }
+
+// MARK: - ImagePicker Delegate Methods
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -259,8 +202,70 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
+// MARK: - Text Field Delegate Methods
 
+extension ProfileViewController: UITextFieldDelegate {
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == regionTextField {
+            return false
+        }
+        return true
+    }
+    
+    // Function to allow User to modify username. User has to press enter for change to be updated
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if Auth.auth().currentUser != nil {
 
-
-
-
+            db.collection("Usernames").document(textField.text!).getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    
+                    if self.username != textField.text! {
+                        let message = "Please choose a different username"
+                        let alert = UIAlertController(title: "Username taken", message: message, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        self.userName.text = self.username
+                    }
+                    
+                } else {
+                    
+                    // Deletes the username from collection
+                    self.db.collection("Usernames").document(self.username).delete() { err in
+                        if let err = err {
+                            print("Error removing document: \(err)")
+                        } else {
+        
+                            // Add a new username in collection "Usernames"
+                            self.db.collection("Usernames").document(textField.text!).setData([:]) { err in
+                                if let err = err {
+                                    print("Error writing document: \(err)")
+                                } else {
+                                    self.username = textField.text!
+                                    // print("Document successfully written!")
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Updates the username of user in User Details collection
+                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).updateData([
+                        "Username": textField.text!
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            // print("Document successfully updated")
+                        }
+                    }
+                }
+            }
+        }
+        return true
+    }
+}

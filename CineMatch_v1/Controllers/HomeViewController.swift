@@ -21,6 +21,8 @@ class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - TableView DataSource Methods
+
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
