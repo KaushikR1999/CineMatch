@@ -309,6 +309,7 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - PasswordTextField (1.2.0)
   - PromisesObjC (1.2.12)
 
 DEPENDENCIES:
@@ -316,6 +317,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - IQKeyboardManagerSwift (= 6.5.0)
+  - PasswordTextField
 
 SPEC REPOS:
   trunk:
@@ -335,6 +337,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - leveldb-library
     - nanopb
+    - PasswordTextField
     - PromisesObjC
 
 SPEC CHECKSUMS:
@@ -354,8 +357,9 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 6cd19976c6e871907c4ed9127c2d3affdd4defc2
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  PasswordTextField: 2548de43f150fc90a014da47b0d97e31aada4b94
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: c409224980940ad2149d57945ea6ef76e29c019c
+PODFILE CHECKSUM: ec1e24a36126f68a98012c0fb72d97e6ac226d56
 
 COCOAPODS: 1.10.1

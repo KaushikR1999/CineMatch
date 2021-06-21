@@ -13,4 +13,7 @@ target 'CineMatch_v1' do
   # Keyboard Manager
   pod 'IQKeyboardManagerSwift', '6.5.0'
   
+  # Toggle Password View
+  pod 'PasswordTextField'
+  
 end
