@@ -7,6 +7,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+
+    
+    override func viewDidAppear(_ animated: Bool) {
+
+        // checks if there is a user logged in, if so don't need to present log out page
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "loginToHome", sender: self)
+        }
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {
