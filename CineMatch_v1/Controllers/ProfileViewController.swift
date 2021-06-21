@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
     var username : String = ""
     
     let db = Firestore.firestore()
+    let storageManager = StorageManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,19 +68,21 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
                 if profileURLString == "" {
                     self.profilePicture.image = UIImage(systemName: "person.circle")
                 } else {
+                    self.storageManager.retrieveProfilePic(profilePicture: self.profilePicture, profileURLString: profileURLString)
                     
-                    if let profileURL = URL(string: profileURLString!) {
-                        DispatchQueue.global().async { [weak self] in
-                            if let data = try? Data(contentsOf: profileURL) {
-                                if let image = UIImage(data: data) {
-                                    DispatchQueue.main.async {
-                                        self?.profilePicture.image = image
-                                    }
-                                }
-                            }
-                        }
-                        
-                    }
+                    
+//                    if let profileURL = URL(string: profileURLString!) {
+//                        DispatchQueue.global().async { [weak self] in
+//                            if let data = try? Data(contentsOf: profileURL) {
+//                                if let image = UIImage(data: data) {
+//                                    DispatchQueue.main.async {
+//                                        self?.profilePicture.image = image
+//                                    }
+//                                }
+//                            }
+//                        }
+//
+//                    }
                 }
                 
             } else {
@@ -260,40 +263,42 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             return
         }
         
+        self.storageManager.storeProfilePic(imageData: imageData)
+        
         // store the selected image in Firebase Storage, under profile folder
-        let storageRef = Storage.storage().reference(forURL: "gs://cinematch-3cb3b.appspot.com")
-        
-        let storageProfileRef = storageRef.child("profile").child(Auth.auth().currentUser!.uid)
-        
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpg"
-        storageProfileRef.putData(imageData, metadata: metadata, completion:
-                                    { (storageMetaData, error) in
-                                        if error != nil {
-                                            print(error?.localizedDescription)
-                                            return
-                                        }
-                                        
-                                        // if no error, save url under profileImageURL in User Details collection
-                                        storageProfileRef.downloadURL(completion: { (url, error) in
-                                            if let metaImageURL = url?.absoluteString {
-                                                
-                                                if Auth.auth().currentUser != nil {
-                                                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).updateData([
-                                                        "profileImageURL": metaImageURL
-                                                    ]) { err in
-                                                        if let err = err {
-                                                            print("Error updating document: \(err)")
-                                                        } else {
-                                                            // print("Document successfully updated")
-                                                        }
-                                                    }
-                                                }
-                                                
-                                            }
-                                        })
-                                        
-                                    })
+//        let storageRef = Storage.storage().reference(forURL: "gs://cinematch-3cb3b.appspot.com")
+//
+//        let storageProfileRef = storageRef.child("profile").child(Auth.auth().currentUser!.uid)
+//
+//        let metadata = StorageMetadata()
+//        metadata.contentType = "image/jpg"
+//        storageProfileRef.putData(imageData, metadata: metadata, completion:
+//                                    { (storageMetaData, error) in
+//                                        if error != nil {
+//                                            print(error?.localizedDescription)
+//                                            return
+//                                        }
+//
+//                                        // if no error, save url under profileImageURL in User Details collection
+//                                        storageProfileRef.downloadURL(completion: { (url, error) in
+//                                            if let metaImageURL = url?.absoluteString {
+//
+//                                                if Auth.auth().currentUser != nil {
+//                                                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).updateData([
+//                                                        "profileImageURL": metaImageURL
+//                                                    ]) { err in
+//                                                        if let err = err {
+//                                                            print("Error updating document: \(err)")
+//                                                        } else {
+//                                                            // print("Document successfully updated")
+//                                                        }
+//                                                    }
+//                                                }
+//
+//                                            }
+//                                        })
+//
+//                                    })
         
     }
     

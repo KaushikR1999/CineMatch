@@ -27,6 +27,7 @@
 		392B931926611AC900686C41 /* MovieMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B931826611AC900686C41 /* MovieMatchesViewController.swift */; };
 		93E4D04FF49D4A81E113F5E3 /* Pods_CineMatch_v1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3933FDB22B3CDB6FF3ECF56 /* Pods_CineMatch_v1.framework */; };
 		B16E81AB267DA78800045056 /* CountryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E81AA267DA78800045056 /* CountryManager.swift */; };
+		B1DB59CE26803367004DE5B9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DB59CD26803367004DE5B9 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		561D04CA5DDDECE131D6AC23 /* Pods-CineMatch_v1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineMatch_v1.debug.xcconfig"; path = "Target Support Files/Pods-CineMatch_v1/Pods-CineMatch_v1.debug.xcconfig"; sourceTree = "<group>"; };
 		A3933FDB22B3CDB6FF3ECF56 /* Pods_CineMatch_v1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineMatch_v1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B16E81AA267DA78800045056 /* CountryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryManager.swift; sourceTree = "<group>"; };
+		B1DB59CD26803367004DE5B9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			children = (
 				39064E692679AEEB008E9876 /* Friend.swift */,
 				B16E81AA267DA78800045056 /* CountryManager.swift */,
+				B1DB59CD26803367004DE5B9 /* StorageManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				392B92EE2660A53600686C41 /* LoginViewController.swift in Sources */,
 				392B92EA2660A53600686C41 /* AppDelegate.swift in Sources */,
 				392B93092660CA0A00686C41 /* SignUpViewController.swift in Sources */,
+				B1DB59CE26803367004DE5B9 /* StorageManager.swift in Sources */,
 				392B92EC2660A53600686C41 /* SceneDelegate.swift in Sources */,
 				392B9313266103A800686C41 /* PastSessionsInfoViewController.swift in Sources */,
 			);
