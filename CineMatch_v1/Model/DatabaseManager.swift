@@ -3,16 +3,47 @@ import Foundation
 import Firebase
 import FirebaseStorage
 
-struct StorageManager {
+struct DatabaseManager {
     
     let storageRef = Storage.storage().reference(forURL: "gs://cinematch-3cb3b.appspot.com")
-    let db = Firestore.firestore()
-    
-    
-    
     let metadata = StorageMetadata()
     
-    func storeProfilePic(imageData: Data) {
+    let currentUserDetails = Firestore.firestore()
+        .collection("User Details").document(Auth.auth().currentUser!.uid)
+    let usernames = Firestore.firestore()
+        .collection("Usernames")
+    
+    let currentUser = Auth.auth().currentUser
+        
+    func updateRegion(_ selectedCountry: String) {
+        if currentUser != nil {
+            currentUserDetails.updateData(
+                ["Region": selectedCountry])
+            { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    // print("Document successfully updated")
+                }
+            }
+        }
+    }
+    
+    func updateProfileImageURL(_ imageURL: String) {
+        if currentUser != nil {
+            currentUserDetails.updateData(
+                ["profileImageURL": imageURL])
+            { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    // print("Document successfully updated")
+                }
+            }
+        }
+    }
+    
+    func storeProfilePic(_ imageData: Data) {
         
         let storageProfileRef = storageRef.child("profile").child(Auth.auth().currentUser!.uid)
         metadata.contentType = "image/jpg"
@@ -20,26 +51,14 @@ struct StorageManager {
         storageProfileRef.putData(imageData, metadata: metadata, completion:
                                     { (storageMetaData, error) in
                                         if error != nil {
-                                            print(error?.localizedDescription)
+                                            print(error?.localizedDescription ?? "Error!")
                                             return
                                         }
                                         
                                         // if no error, save url under profileImageURL in User Details collection
                                         storageProfileRef.downloadURL(completion: { (url, error) in
                                             if let metaImageURL = url?.absoluteString {
-                                                
-                                                if Auth.auth().currentUser != nil {
-                                                    self.db.collection("User Details").document(Auth.auth().currentUser!.uid).updateData([
-                                                        "profileImageURL": metaImageURL
-                                                    ]) { err in
-                                                        if let err = err {
-                                                            print("Error updating document: \(err)")
-                                                        } else {
-                                                            // print("Document successfully updated")
-                                                        }
-                                                    }
-                                                }
-                                                
+                                                updateProfileImageURL(metaImageURL)
                                             }
                                         })
                                         
@@ -58,9 +77,12 @@ struct StorageManager {
                 }
             }
         }
-
     }
-        
-}
     
+    
+
+    
+    
+}
+
 

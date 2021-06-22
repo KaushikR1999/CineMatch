@@ -7,8 +7,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profilePicture: UIImageView!
     
     @IBOutlet weak var userEmail: UILabel!
-    @IBOutlet weak var userName: UITextField!
     
+    @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var regionTextField: UITextField!
     
     var regionPickerView = UIPickerView()
@@ -18,46 +18,47 @@ class ProfileViewController: UIViewController {
     var username : String = ""
     
     let db = Firestore.firestore()
-    let storageManager = StorageManager()
+    let databaseManager = DatabaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Profile Picture
         
+        // make profile picture circular
         profilePicture.layer.masksToBounds = true
         profilePicture.layer.cornerRadius = profilePicture.bounds.width/2.0
         
-        profilePicture.isUserInteractionEnabled = true
         
         // tapping on profile picture region will bring up action sheet
+        profilePicture.isUserInteractionEnabled = true
         profilePicture.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
         )
         
-
         // Picker View
         regionPickerView.dataSource = self
         regionPickerView.delegate = self
         
         
-        // Text Field
         regionTextField.delegate = self
-        
-        // tapping on text field will bring up the picker view
+        // tapping on region text field will bring up the picker view
         regionTextField.inputView = regionPickerView
         
-        userName.delegate = self
+        userNameTextField.delegate = self
+        userNameTextField.autocorrectionType = .no
+        userNameTextField.autocapitalizationType = .none
+       
         
         // Display User's Email in userEmail Label
         userEmail.text = Auth.auth().currentUser?.email
         
-        // Retrieve User's Username and region from User Details collection & display it in userName TextField
+        // Retrieve user details from database & display 
         let users = db.collection("User Details").document(Auth.auth().currentUser!.uid)
         users.getDocument { (document, error) in
             if let document = document, document.exists {
-                self.userName.text = document.data()!["Username"] as? String
-                self.username = self.userName.text!
+                self.userNameTextField.text = document.data()!["Username"] as? String
+                self.username = self.userNameTextField.text!
                 self.regionTextField.text = document.data()!["Region"] as? String
                 
                 /* if profileURLString is empty, display default system icon if not
@@ -65,17 +66,21 @@ class ProfileViewController: UIViewController {
                  */
                 
                 let profileURLString = document.data()!["profileImageURL"] as? String
-                if profileURLString == "" {
+                
+                guard let profileURL = profileURLString, !profileURL.isEmpty else {
                     self.profilePicture.image = UIImage(systemName: "person.circle")
-                } else {
-                    self.storageManager.retrieveProfilePic(profilePicture: self.profilePicture, profileURLString: profileURLString)
+                    return
                 }
                 
-            } else {
+                self.databaseManager.retrieveProfilePic(
+                        profilePicture: self.profilePicture,
+                        profileURLString: profileURLString)
+                }
+            
+            else {
                 print("Document does not exist")
             }
         }
-        
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
     }
@@ -116,19 +121,7 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
         // updates country in text field to selected country
         regionTextField.text = selectedCountry
-        
-        // Update region in Firebase User Details to selected country
-        if Auth.auth().currentUser != nil {
-            self.db.collection("User Details").document(Auth.auth().currentUser!.uid).updateData([
-                "Region": selectedCountry
-            ]) { err in
-                if let err = err {
-                    print("Error updating document: \(err)")
-                } else {
-                    // print("Document successfully updated")
-                }
-            }
-        }
+        databaseManager.updateRegion(selectedCountry)
     }
     
 }
@@ -191,8 +184,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         guard let imageData = selectedImage.jpegData(compressionQuality: 0.4) else {
             return
         }
-        
-        self.storageManager.storeProfilePic(imageData: imageData)
+        self.databaseManager.storeProfilePic(imageData)
         
     }
     
@@ -230,7 +222,7 @@ extension ProfileViewController: UITextFieldDelegate {
                         let alert = UIAlertController(title: "Username taken", message: message, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
-                        self.userName.text = self.username
+                        self.userNameTextField.text = self.username
                     }
                     
                 } else {
@@ -267,5 +259,9 @@ extension ProfileViewController: UITextFieldDelegate {
             }
         }
         return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        textFieldShouldReturn(textField)
     }
 }
