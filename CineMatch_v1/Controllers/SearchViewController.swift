@@ -1,18 +1,19 @@
 import UIKit
+import Firebase
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    let friends: [Friend] = [
-        Friend(friendName: "Mary Jane", friendImage: #imageLiteral(resourceName: "Mary Jane")),
-        Friend(friendName: "Harry Osborn", friendImage: #imageLiteral(resourceName: "Harry Osborn")),
-        Friend(friendName: "Gwen Stacy", friendImage: #imageLiteral(resourceName: "Gwen Stacy"))
-    ]
+    var friends: [Friend] = []
     
     var filteredFriends: [Friend]!
     
+    var username: String = ""
+    
+    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +24,20 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         filteredFriends = []
+        
+        db.collection("User Details").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    // print("\(document.documentID) => \(document.data())")
+                    
+                    if document.documentID != Auth.auth().currentUser!.uid {
+                        self.friends.append(Friend(friendName: (document.data()["Username"] as? String)!, friendImage:#imageLiteral(resourceName: "Spider-man")))
+                    }
+                }
+            }
+        }
         
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }

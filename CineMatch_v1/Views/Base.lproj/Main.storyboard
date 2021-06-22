@@ -577,7 +577,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LuR-7Q-MFI" userLabel="Movie">
-                                <rect key="frame" x="50" y="20" width="314" height="633"/>
+                                <rect key="frame" x="50" y="40" width="314" height="633"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNa-Ei-iHM">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="436"/>
@@ -594,14 +594,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="FpS-DB-sO4" kind="show" id="aJZ-Fq-6W6"/>
+                                            <segue destination="FpS-DB-sO4" kind="show" id="tyN-BQ-REK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARL-Jz-DVZ">
                                         <rect key="frame" x="0.0" y="436" width="314" height="197"/>
                                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="197" id="0Fl-SH-dhm"/>
+                                            <constraint firstAttribute="height" constant="197" id="clE-7U-dfJ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal">
@@ -617,19 +617,19 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="FpS-DB-sO4" kind="show" id="E1V-Tb-18B"/>
+                                            <segue destination="FpS-DB-sO4" kind="show" id="rZY-ej-TdI"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="leading" secondItem="LuR-7Q-MFI" secondAttribute="leading" id="AWT-ks-S9y"/>
-                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="leading" secondItem="ARL-Jz-DVZ" secondAttribute="leading" id="Ce4-fh-V8h"/>
-                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="trailing" secondItem="ARL-Jz-DVZ" secondAttribute="trailing" id="NEy-KO-T6u"/>
-                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="top" secondItem="LuR-7Q-MFI" secondAttribute="top" id="agE-HY-1B9"/>
-                                    <constraint firstItem="ARL-Jz-DVZ" firstAttribute="top" secondItem="UNa-Ei-iHM" secondAttribute="bottom" id="yXv-XD-Y4M"/>
-                                    <constraint firstAttribute="bottom" secondItem="ARL-Jz-DVZ" secondAttribute="bottom" id="ypK-JA-euj"/>
-                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="centerX" secondItem="LuR-7Q-MFI" secondAttribute="centerX" id="z4p-fI-z8M"/>
+                                    <constraint firstAttribute="bottom" secondItem="ARL-Jz-DVZ" secondAttribute="bottom" id="41R-9F-RRx"/>
+                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="top" secondItem="LuR-7Q-MFI" secondAttribute="top" id="NLu-uP-HZ7"/>
+                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="trailing" secondItem="ARL-Jz-DVZ" secondAttribute="trailing" id="RHe-qz-nmN"/>
+                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="leading" secondItem="LuR-7Q-MFI" secondAttribute="leading" id="ZCV-Kt-pYJ"/>
+                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="centerX" secondItem="LuR-7Q-MFI" secondAttribute="centerX" id="jGP-3o-NU8"/>
+                                    <constraint firstItem="ARL-Jz-DVZ" firstAttribute="top" secondItem="UNa-Ei-iHM" secondAttribute="bottom" id="uw9-fl-xGu"/>
+                                    <constraint firstItem="UNa-Ei-iHM" firstAttribute="leading" secondItem="ARL-Jz-DVZ" secondAttribute="leading" id="vYY-92-GMo"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -641,10 +641,10 @@
                         <viewLayoutGuide key="safeArea" id="pev-gk-kJ9"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pev-gk-kJ9" firstAttribute="bottom" secondItem="LuR-7Q-MFI" secondAttribute="bottom" constant="72" id="4CN-d8-GyM"/>
-                            <constraint firstItem="LuR-7Q-MFI" firstAttribute="centerX" secondItem="AW4-1C-DLW" secondAttribute="centerX" id="Pwj-90-rNz"/>
-                            <constraint firstItem="LuR-7Q-MFI" firstAttribute="top" secondItem="pev-gk-kJ9" secondAttribute="top" constant="20" id="fo8-Vx-cZB"/>
-                            <constraint firstItem="LuR-7Q-MFI" firstAttribute="leading" secondItem="pev-gk-kJ9" secondAttribute="leading" constant="50" id="qzZ-vv-wnm"/>
+                            <constraint firstItem="LuR-7Q-MFI" firstAttribute="centerX" secondItem="AW4-1C-DLW" secondAttribute="centerX" id="2tU-XI-7XG"/>
+                            <constraint firstItem="pev-gk-kJ9" firstAttribute="bottom" secondItem="LuR-7Q-MFI" secondAttribute="bottom" constant="52" id="eKU-I2-5V4"/>
+                            <constraint firstItem="LuR-7Q-MFI" firstAttribute="leading" secondItem="pev-gk-kJ9" secondAttribute="leading" constant="50" id="f6Q-Nv-tQ7"/>
+                            <constraint firstItem="LuR-7Q-MFI" firstAttribute="top" secondItem="pev-gk-kJ9" secondAttribute="top" constant="40" id="ndk-yI-XvS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OOw-gr-OFK"/>
@@ -783,7 +783,7 @@ Stars: Tobey Maguire, Kirsten Dunst, Alfred Molina</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="fGI-K3-a3O"/>
-        <segue reference="E1V-Tb-18B"/>
+        <segue reference="tyN-BQ-REK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.67843137249999996" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

@@ -35,7 +35,7 @@ class ProfileViewController: UIViewController {
             UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
         )
         
-        
+
         // Picker View
         regionPickerView.dataSource = self
         regionPickerView.delegate = self

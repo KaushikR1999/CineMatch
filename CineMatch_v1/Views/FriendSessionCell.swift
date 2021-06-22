@@ -18,6 +18,9 @@ class FriendSessionCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         friendBubble.layer.cornerRadius = 10
+        
+        friendImage.layer.masksToBounds = true
+        friendImage.layer.cornerRadius = friendImage.bounds.width/2.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
