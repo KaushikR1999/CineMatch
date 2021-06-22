@@ -66,6 +66,8 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
             return item.friendName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         
+        
+        
         tableView.reloadData()
     }
 }
