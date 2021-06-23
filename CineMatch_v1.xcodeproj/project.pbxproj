@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		39064E6726797F3D008E9876 /* FriendSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39064E6526797F3D008E9876 /* FriendSessionCell.swift */; };
 		39064E6826797F3D008E9876 /* FriendSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39064E6626797F3D008E9876 /* FriendSessionCell.xib */; };
-		39064E6A2679AEEB008E9876 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39064E692679AEEB008E9876 /* Friend.swift */; };
+		39064E6A2679AEEB008E9876 /* SearchUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39064E692679AEEB008E9876 /* SearchUser.swift */; };
 		39064E6E267A5620008E9876 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39064E6D267A5620008E9876 /* GoogleService-Info.plist */; };
 		392B92EA2660A53600686C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B92E92660A53600686C41 /* AppDelegate.swift */; };
 		392B92EC2660A53600686C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B92EB2660A53600686C41 /* SceneDelegate.swift */; };
@@ -32,7 +32,7 @@
 /* Begin PBXFileReference section */
 		39064E6526797F3D008E9876 /* FriendSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSessionCell.swift; sourceTree = "<group>"; };
 		39064E6626797F3D008E9876 /* FriendSessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendSessionCell.xib; sourceTree = "<group>"; };
-		39064E692679AEEB008E9876 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		39064E692679AEEB008E9876 /* SearchUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUser.swift; sourceTree = "<group>"; };
 		39064E6D267A5620008E9876 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		392B92E62660A53600686C41 /* CineMatch_v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineMatch_v1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392B92E92660A53600686C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		396BB8732673899600D9BC8E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				39064E692679AEEB008E9876 /* Friend.swift */,
+				39064E692679AEEB008E9876 /* SearchUser.swift */,
 				B16E81AA267DA78800045056 /* CountryManager.swift */,
 				B12ACB452682088300EDBBD9 /* DatabaseManager.swift */,
 			);
@@ -271,7 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				392B930D2660E13500686C41 /* ProfileViewController.swift in Sources */,
-				39064E6A2679AEEB008E9876 /* Friend.swift in Sources */,
+				39064E6A2679AEEB008E9876 /* SearchUser.swift in Sources */,
 				B12ACB462682088300EDBBD9 /* DatabaseManager.swift in Sources */,
 				392B9317266103CE00686C41 /* MovieInfoViewController.swift in Sources */,
 				39064E6726797F3D008E9876 /* FriendSessionCell.swift in Sources */,

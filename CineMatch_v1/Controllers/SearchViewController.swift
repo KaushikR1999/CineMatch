@@ -6,9 +6,9 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var friends: [Friend] = []
+    var friends: [SearchUser] = []
     
-    var filteredFriends: [Friend]!
+    var filteredFriends: [SearchUser]!
     
     var username: String = ""
     
@@ -38,8 +38,8 @@ class SearchViewController: UIViewController {
                         if let username = document.data()["Username"] as? String,
                            let profileURLString = document.data()["profileImageURL"] as? String {
                             
-                            self.friends.append(Friend(friendName: username,
-                                                       friendImage: self.databaseManager.retrieveProfilePic(profileURLString)))
+                            self.friends.append(SearchUser(searchUserName: username,
+                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString)))
                         }
                     }
                 }
@@ -62,15 +62,15 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! FriendSessionCell
-        cell.friendName.text = filteredFriends[indexPath.row].friendName
-        cell.friendImage.image = filteredFriends[indexPath.row].friendImage
+        cell.friendName.text = filteredFriends[indexPath.row].searchUserName
+        cell.friendImage.image = filteredFriends[indexPath.row].searchUserImage
         return cell
     }
     
     // This method updates filteredFriends based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredFriends = searchText.isEmpty ? [] : friends.filter { (item: Friend) -> Bool in
-            return item.friendName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        filteredFriends = searchText.isEmpty ? [] : friends.filter { (item: SearchUser) -> Bool in
+            return item.searchUserName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         
         
