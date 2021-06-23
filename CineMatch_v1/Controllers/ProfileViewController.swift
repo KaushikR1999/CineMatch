@@ -68,11 +68,10 @@ class ProfileViewController: UIViewController {
                 let profileURLString = document.data()!["profileImageURL"] as? String
                 
                 guard let profileURL = profileURLString, !profileURL.isEmpty else {
-                    self.profilePicture.image = UIImage(systemName: "person.circle")
                     return
                 }
                 
-                self.databaseManager.retrieveProfilePic(
+                self.databaseManager.setProfilePic(
                         profilePicture: self.profilePicture,
                         profileURLString: profileURLString)
                 }

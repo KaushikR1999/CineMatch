@@ -14,7 +14,7 @@ struct DatabaseManager {
         .collection("Usernames")
     
     let currentUser = Auth.auth().currentUser
-        
+    
     func updateRegion(_ selectedCountry: String) {
         if currentUser != nil {
             currentUserDetails.updateData(
@@ -65,7 +65,7 @@ struct DatabaseManager {
                                     })
     }
     
-    func retrieveProfilePic(profilePicture: UIImageView!, profileURLString: String?){
+    func setProfilePic(profilePicture: UIImageView!, profileURLString: String?){
         if let profileURL = URL(string: profileURLString!) {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: profileURL) {
@@ -80,8 +80,18 @@ struct DatabaseManager {
     }
     
     
-
-    
+    func retrieveProfilePic(_ profileURLString: String) -> UIImage {
+        
+        if let profileURL = URL(string: profileURLString) {
+            if let data = try? Data(contentsOf: profileURL) {
+                if let image = UIImage(data: data) {
+                    return image
+                }
+            }
+        }
+        
+        return #imageLiteral(resourceName: "default pic")
+    }
     
 }
 

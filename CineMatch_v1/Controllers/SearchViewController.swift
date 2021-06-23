@@ -2,7 +2,7 @@ import UIKit
 import Firebase
 
 class SearchViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -13,10 +13,11 @@ class SearchViewController: UIViewController {
     var username: String = ""
     
     let db = Firestore.firestore()
-
+    let databaseManager = DatabaseManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
@@ -33,12 +34,18 @@ class SearchViewController: UIViewController {
                     // print("\(document.documentID) => \(document.data())")
                     
                     if document.documentID != Auth.auth().currentUser!.uid {
-                        self.friends.append(Friend(friendName: (document.data()["Username"] as? String)!, friendImage:#imageLiteral(resourceName: "Spider-man")))
+                        
+                        if let username = document.data()["Username"] as? String,
+                           let profileURLString = document.data()["profileImageURL"] as? String {
+                            
+                            self.friends.append(Friend(friendName: username,
+                                                       friendImage: self.databaseManager.retrieveProfilePic(profileURLString)))
+                        }
                     }
                 }
             }
         }
-        
+            
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
     
