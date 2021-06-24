@@ -1,12 +1,10 @@
 import UIKit
+import Firebase
 
 class MovieSwipeViewController: UIViewController {
-
-//    var friends: [SearchUser] = [
-//        SearchUser(searchUserName: "Mary Jane", searchUserImage: , search),
-//        SearchUser(searchUserName: "Harry Osborn", searchUserImage: #imageLiteral(resourceName: "Harry Osborn")),
-//        SearchUser(searchUserName: "Gwen Stacy", searchUserImage: #imageLiteral(resourceName: "Gwen Stacy"))
-//    ]
+    
+    let db = Firestore.firestore()
+    let databaseManager = DatabaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()

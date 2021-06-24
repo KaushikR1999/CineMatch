@@ -11,6 +11,9 @@
 		39064E6826797F3D008E9876 /* FriendSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39064E6626797F3D008E9876 /* FriendSessionCell.xib */; };
 		39064E6A2679AEEB008E9876 /* SearchUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39064E692679AEEB008E9876 /* SearchUser.swift */; };
 		39064E6E267A5620008E9876 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39064E6D267A5620008E9876 /* GoogleService-Info.plist */; };
+		391373FE2684E14500C9943B /* FriendReqCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391373FC2684E14500C9943B /* FriendReqCell.swift */; };
+		391373FF2684E14500C9943B /* FriendReqCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 391373FD2684E14500C9943B /* FriendReqCell.xib */; };
+		391374012684E8A400C9943B /* FriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391374002684E8A400C9943B /* FriendRequestViewController.swift */; };
 		392B92EA2660A53600686C41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B92E92660A53600686C41 /* AppDelegate.swift */; };
 		392B92EC2660A53600686C41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B92EB2660A53600686C41 /* SceneDelegate.swift */; };
 		392B92EE2660A53600686C41 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B92ED2660A53600686C41 /* LoginViewController.swift */; };
@@ -34,6 +37,9 @@
 		39064E6626797F3D008E9876 /* FriendSessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendSessionCell.xib; sourceTree = "<group>"; };
 		39064E692679AEEB008E9876 /* SearchUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUser.swift; sourceTree = "<group>"; };
 		39064E6D267A5620008E9876 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		391373FC2684E14500C9943B /* FriendReqCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendReqCell.swift; sourceTree = "<group>"; };
+		391373FD2684E14500C9943B /* FriendReqCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendReqCell.xib; sourceTree = "<group>"; };
+		391374002684E8A400C9943B /* FriendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewController.swift; sourceTree = "<group>"; };
 		392B92E62660A53600686C41 /* CineMatch_v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CineMatch_v1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392B92E92660A53600686C41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		392B92EB2660A53600686C41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +131,8 @@
 				392B92EF2660A53600686C41 /* Main.storyboard */,
 				39064E6526797F3D008E9876 /* SearchUserSessionCell.swift */,
 				39064E6626797F3D008E9876 /* FriendSessionCell.xib */,
+				391373FC2684E14500C9943B /* FriendReqCell.swift */,
+				391373FD2684E14500C9943B /* FriendReqCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 				392B9314266103C200686C41 /* MovieSwipeViewController.swift */,
 				392B9316266103CE00686C41 /* MovieInfoViewController.swift */,
 				392B931826611AC900686C41 /* MovieMatchesViewController.swift */,
+				391374002684E8A400C9943B /* FriendRequestViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -213,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				391373FF2684E14500C9943B /* FriendReqCell.xib in Resources */,
 				392B92F62660A53700686C41 /* LaunchScreen.storyboard in Resources */,
 				392B92F32660A53700686C41 /* Assets.xcassets in Resources */,
 				39064E6E267A5620008E9876 /* GoogleService-Info.plist in Resources */,
@@ -274,6 +284,7 @@
 				39064E6A2679AEEB008E9876 /* SearchUser.swift in Sources */,
 				B12ACB462682088300EDBBD9 /* DatabaseManager.swift in Sources */,
 				392B9317266103CE00686C41 /* MovieInfoViewController.swift in Sources */,
+				391374012684E8A400C9943B /* FriendRequestViewController.swift in Sources */,
 				39064E6726797F3D008E9876 /* SearchUserSessionCell.swift in Sources */,
 				392B931926611AC900686C41 /* MovieMatchesViewController.swift in Sources */,
 				392B930F2660E19B00686C41 /* SearchViewController.swift in Sources */,
@@ -282,6 +293,7 @@
 				392B930B2660DAA000686C41 /* HomeViewController.swift in Sources */,
 				392B92EE2660A53600686C41 /* LoginViewController.swift in Sources */,
 				392B92EA2660A53600686C41 /* AppDelegate.swift in Sources */,
+				391373FE2684E14500C9943B /* FriendReqCell.swift in Sources */,
 				392B93092660CA0A00686C41 /* SignUpViewController.swift in Sources */,
 				392B92EC2660A53600686C41 /* SceneDelegate.swift in Sources */,
 			);
