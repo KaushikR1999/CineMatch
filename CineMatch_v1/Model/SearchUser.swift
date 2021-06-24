@@ -9,5 +9,8 @@ struct SearchUser {
     
     let currentUserDetails = Firestore.firestore()
         .collection("User Details").document(Auth.auth().currentUser!.uid)
+    
+    
+    
   
 }

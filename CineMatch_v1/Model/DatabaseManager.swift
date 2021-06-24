@@ -15,27 +15,22 @@ struct DatabaseManager {
     let currentUser = Auth.auth().currentUser
     
     
-   
-    func checkIfFriends(_ SearchUserUID: String) -> Bool {
+    
+    func checkIfFriends(_ SearchUserUID: String, callback: @escaping (_ status: Bool) -> Void) {
         
         var friendArray: [String]?
         
         currentUserDetails.getDocument { (document, error) in
-                if let document = document, document.exists {
-                        friendArray = document.data()!["Friends"] as? [String]
-                    }
-                }
-
-            if let friends = friendArray {
-                return friends.contains(SearchUserUID)
+            if let document = document, document.exists {
+                friendArray = document.data()!["Friends"] as? [String]
+                callback(friendArray!.contains(SearchUserUID))
             }
-    
-        return false
+        }
         
     }
     
-    
-    
+                    
+            
     func checkIfFriendReqSent(_ SearchUserUID: String) -> Bool {
         
         var friendReqSentArray: [String]?

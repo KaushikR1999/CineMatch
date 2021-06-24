@@ -66,7 +66,13 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
         cell.searchUserName.text = searchUserResults[indexPath.row].searchUserName
         cell.searchUserImage.image = searchUserResults[indexPath.row].searchUserImage
         cell.searchUserUID = searchUserResults[indexPath.row].searchUserUID
-        cell.searchUserRequestButton.isHidden = databaseManager.checkIfFriends(cell.searchUserUID!)
+        
+        databaseManager.checkIfFriends(cell.searchUserUID!, callback: { (ifFriends) in
+            cell.searchUserRequestButton.isHidden = ifFriends
+            DispatchQueue.main.async {
+                tableView.reloadData()
+            }
+        })
         
         return cell
     }
