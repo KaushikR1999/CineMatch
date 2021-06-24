@@ -54,8 +54,8 @@ class ProfileViewController: UIViewController {
         userEmail.text = Auth.auth().currentUser?.email
         
         // Retrieve user details from database & display 
-        let users = db.collection("User Details").document(Auth.auth().currentUser!.uid)
-        users.getDocument { (document, error) in
+        let user = db.collection("User Details").document(Auth.auth().currentUser!.uid)
+        user.getDocument { (document, error) in
             if let document = document, document.exists {
                 self.userNameTextField.text = document.data()!["Username"] as? String
                 self.username = self.userNameTextField.text!

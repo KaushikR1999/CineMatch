@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39064E6726797F3D008E9876 /* FriendSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39064E6526797F3D008E9876 /* FriendSessionCell.swift */; };
+		39064E6726797F3D008E9876 /* SearchUserSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39064E6526797F3D008E9876 /* SearchUserSessionCell.swift */; };
 		39064E6826797F3D008E9876 /* FriendSessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39064E6626797F3D008E9876 /* FriendSessionCell.xib */; };
 		39064E6A2679AEEB008E9876 /* SearchUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39064E692679AEEB008E9876 /* SearchUser.swift */; };
 		39064E6E267A5620008E9876 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39064E6D267A5620008E9876 /* GoogleService-Info.plist */; };
@@ -30,7 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		39064E6526797F3D008E9876 /* FriendSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSessionCell.swift; sourceTree = "<group>"; };
+		39064E6526797F3D008E9876 /* SearchUserSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserSessionCell.swift; sourceTree = "<group>"; };
 		39064E6626797F3D008E9876 /* FriendSessionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendSessionCell.xib; sourceTree = "<group>"; };
 		39064E692679AEEB008E9876 /* SearchUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUser.swift; sourceTree = "<group>"; };
 		39064E6D267A5620008E9876 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				392B92EF2660A53600686C41 /* Main.storyboard */,
-				39064E6526797F3D008E9876 /* FriendSessionCell.swift */,
+				39064E6526797F3D008E9876 /* SearchUserSessionCell.swift */,
 				39064E6626797F3D008E9876 /* FriendSessionCell.xib */,
 			);
 			path = Views;
@@ -274,7 +274,7 @@
 				39064E6A2679AEEB008E9876 /* SearchUser.swift in Sources */,
 				B12ACB462682088300EDBBD9 /* DatabaseManager.swift in Sources */,
 				392B9317266103CE00686C41 /* MovieInfoViewController.swift in Sources */,
-				39064E6726797F3D008E9876 /* FriendSessionCell.swift in Sources */,
+				39064E6726797F3D008E9876 /* SearchUserSessionCell.swift in Sources */,
 				392B931926611AC900686C41 /* MovieMatchesViewController.swift in Sources */,
 				392B930F2660E19B00686C41 /* SearchViewController.swift in Sources */,
 				B16E81AB267DA78800045056 /* CountryManager.swift in Sources */,

@@ -6,9 +6,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var friends: [SearchUser] = [
-        SearchUser(searchUserName: "Mary Jane", searchUserImage: #imageLiteral(resourceName: "Mary Jane")),
-        SearchUser(searchUserName: "Harry Osborn", searchUserImage: #imageLiteral(resourceName: "Harry Osborn")),
-        SearchUser(searchUserName: "Gwen Stacy", searchUserImage: #imageLiteral(resourceName: "Gwen Stacy"))
+        SearchUser(searchUserName: "Mary Jane", searchUserImage: #imageLiteral(resourceName: "Mary Jane"), searchUserUID: ""),
+        SearchUser(searchUserName: "Harry Osborn", searchUserImage: #imageLiteral(resourceName: "Harry Osborn"), searchUserUID: ""),
+        SearchUser(searchUserName: "Gwen Stacy", searchUserImage: #imageLiteral(resourceName: "Gwen Stacy"), searchUserUID: "")
     ]
     
     override func viewDidLoad() {
@@ -29,9 +29,9 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! FriendSessionCell
-        cell.friendName.text = friends[indexPath.row].searchUserName
-        cell.friendImage.image = friends[indexPath.row].searchUserImage
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! SearchUserSessionCell
+        cell.searchUserName.text = friends[indexPath.row].searchUserName
+        cell.searchUserImage.image = friends[indexPath.row].searchUserImage
         return cell
     }
     

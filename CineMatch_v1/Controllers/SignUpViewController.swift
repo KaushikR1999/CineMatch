@@ -95,7 +95,11 @@ class SignUpViewController: UIViewController {
                         self.db.collection("User Details").document(Auth.auth().currentUser!.uid).setData(
                             ["Username": username,
                              "Region": "United States",
-                             "profileImageURL": ""]
+                             "profileImageURL": "",
+                             "Friends": [String](),
+                             "FriendRequestsSent": [String](),
+                             "FriendRequestsReceived": [String]()
+                            ]
                         )
                         
                         /* Save user's username to a Username collection to keep track of all usernames

@@ -6,9 +6,9 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var friends: [SearchUser] = []
+    var searchUsers: [SearchUser] = []
     
-    var filteredFriends: [SearchUser]!
+    var searchUserResults: [SearchUser]!
     
     var username: String = ""
     
@@ -24,7 +24,7 @@ class SearchViewController: UIViewController {
         
         tableView.dataSource = self
         searchBar.delegate = self
-        filteredFriends = []
+        searchUserResults = []
         
         db.collection("User Details").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -38,8 +38,9 @@ class SearchViewController: UIViewController {
                         if let username = document.data()["Username"] as? String,
                            let profileURLString = document.data()["profileImageURL"] as? String {
                             
-                            self.friends.append(SearchUser(searchUserName: username,
-                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString)))
+                            self.searchUsers.append(SearchUser(searchUserName: username,
+                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
+                                                       searchUserUID: document.documentID))
                         }
                     }
                 }
@@ -57,19 +58,22 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredFriends.count
+        return searchUserResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! FriendSessionCell
-        cell.friendName.text = filteredFriends[indexPath.row].searchUserName
-        cell.friendImage.image = filteredFriends[indexPath.row].searchUserImage
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! SearchUserSessionCell
+        cell.searchUserName.text = searchUserResults[indexPath.row].searchUserName
+        cell.searchUserImage.image = searchUserResults[indexPath.row].searchUserImage
+        cell.searchUserUID = searchUserResults[indexPath.row].searchUserUID
+        cell.searchUserRequestButton.isHidden = databaseManager.checkIfFriends(cell.searchUserUID!)
+        
         return cell
     }
     
     // This method updates filteredFriends based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredFriends = searchText.isEmpty ? [] : friends.filter { (item: SearchUser) -> Bool in
+        searchUserResults = searchText.isEmpty ? [] : searchUsers.filter { (item: SearchUser) -> Bool in
             return item.searchUserName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         
