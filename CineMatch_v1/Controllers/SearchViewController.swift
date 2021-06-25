@@ -92,4 +92,8 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.autocapitalizationType = .none
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dismissKeyboard()
+    }
 }

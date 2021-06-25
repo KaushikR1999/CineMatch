@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -42,7 +42,7 @@
                                             <constraint firstAttribute="width" constant="40" id="umj-lG-kxB"/>
                                             <constraint firstAttribute="height" constant="40" id="wv3-9m-ifT"/>
                                         </constraints>
-                                        <state key="normal" title="yes" image="checked"/>
+                                        <state key="normal" title="yes" image="person.fill.checkmark" catalog="system"/>
                                         <connections>
                                             <action selector="friendReqAcceptPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="U2O-ZL-Ga6"/>
                                         </connections>
@@ -53,7 +53,7 @@
                                             <constraint firstAttribute="height" constant="40" id="5lC-FF-Pkt"/>
                                             <constraint firstAttribute="width" constant="40" id="XtU-t8-7gx"/>
                                         </constraints>
-                                        <state key="normal" title="no" image="cancel"/>
+                                        <state key="normal" title="no" image="person.fill.xmark" catalog="system"/>
                                         <connections>
                                             <action selector="friendReqDeclinePressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oq3-c7-4x8"/>
                                         </connections>
@@ -82,6 +82,7 @@
                         </constraints>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" red="0.1333333333" green="0.15686274510000001" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="vaM-7i-wY7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="QHz-Kv-Gtc"/>
                     <constraint firstItem="vaM-7i-wY7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="eV5-t6-WnL"/>
@@ -101,8 +102,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cancel" width="455.11099243164062" height="455.11099243164062"/>
-        <image name="checked" width="50" height="50"/>
+        <image name="person.fill.checkmark" catalog="system" width="128" height="88"/>
+        <image name="person.fill.xmark" catalog="system" width="128" height="88"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -25,6 +25,11 @@ class FriendReqCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        friendReqBubble.layer.cornerRadius = 10
+        
+        friendReqImage.layer.masksToBounds = true
+        friendReqImage.layer.cornerRadius = friendReqImage.bounds.width/2.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
