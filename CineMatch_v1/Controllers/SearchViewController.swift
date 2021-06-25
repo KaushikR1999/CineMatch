@@ -47,7 +47,8 @@ class SearchViewController: UIViewController {
                 }
             }
         }
-            
+    
+
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
     
@@ -78,14 +79,17 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
         return cell
     }
     
+    
+    
     // This method updates filteredFriends based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchUserResults = searchText.isEmpty ? [] : searchUsers.filter { (item: SearchUser) -> Bool in
             return item.searchUserName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
-        
-        
-        
         tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.autocapitalizationType = .none
     }
 }

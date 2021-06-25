@@ -34,9 +34,10 @@ class FriendReqCell: UITableViewCell {
     }
     
     @IBAction func friendReqAcceptPressed(_ sender: UIButton) {
-        databaseManager.acceptFriendReq(friendReqUID!)
 
-    }
+        self.databaseManager.acceptFriendReq(self.friendReqUID!)
+    
+        }
     
     @IBAction func friendReqDeclinePressed(_ sender: UIButton) {
         databaseManager.declineFriendReq(friendReqUID!)

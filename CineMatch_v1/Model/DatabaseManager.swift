@@ -26,13 +26,41 @@ struct DatabaseManager {
             }
         }
     }
+    
+    func deleteFriend(_ SearchUserUID: String) {
         
+        if currentUser != nil {
+            currentUserDetails.updateData(
+                ["Friends": FieldValue.arrayRemove([SearchUserUID])])
+            { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    // print("Document successfully updated")
+                }
+            }
+        }
+        
+        let searchUserDetails = Firestore.firestore()
+            .collection("User Details").document(SearchUserUID)
+        
+        searchUserDetails.updateData(
+            ["Friends": FieldValue.arrayRemove([currentUser!.uid])])
+        { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                // print("Document successfully updated")
+            }
+        }
+    }
+    
     func getFriendRequests(callback: @escaping (_ friendRequests: [String]) -> Void) {
         
         currentUserDetails.getDocument { (document, error) in
             if let document = document, document.exists {
                 if let friendRequests = document.data()!["FriendRequestsReceived"] as? [String] {
-                    callback(friendRequests )
+                    callback(friendRequests)
 
                 }
             }
@@ -128,7 +156,7 @@ struct DatabaseManager {
     }
     
     func acceptFriendReq(_ SearchUserUID: String) {
-        
+   
             if currentUser != nil {
                 currentUserDetails.updateData(
                     ["Friends": FieldValue.arrayUnion([SearchUserUID]),
@@ -155,6 +183,8 @@ struct DatabaseManager {
                     // print("Document successfully updated")
                 }
             }
+    
+        
         }
     
     func declineFriendReq(_ SearchUserUID: String) {

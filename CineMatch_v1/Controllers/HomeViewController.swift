@@ -4,6 +4,7 @@ import Firebase
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var friendRequestsIcon: UIBarButtonItem!
     
     let db = Firestore.firestore()
     let databaseManager = DatabaseManager()
@@ -20,26 +21,15 @@ class HomeViewController: UIViewController {
         
         tableView.dataSource = self
         
-//        db.collection("User Details").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    // print("\(document.documentID) => \(document.data())")
-//
-//                    if document.documentID != Auth.auth().currentUser!.uid {
-//
-//                        if let username = document.data()["Username"] as? String,
-//                           let profileURLString = document.data()["profileImageURL"] as? String {
-//
-//                            self.friends.append(SearchUser(searchUserName: username,
-//                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
-//                                                       searchUserUID: document.documentID))
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        databaseManager.getFriendRequests(callback: { (friendRequestsReceived) in
+            
+            if friendRequestsReceived.count > 0 {
+                self.friendRequestsIcon.image = UIImage(systemName: "person.crop.circle.badge.exclamationmark")
+            } else {
+                self.friendRequestsIcon.image = UIImage(systemName: "person.2.fill")
+            }
+        })
+
         
         friends = []
         let userDetails = db.collection("User Details")
@@ -54,6 +44,7 @@ class HomeViewController: UIViewController {
                                                 searchUserUID: document.documentID))
                     }
         
+                    self.friends = self.friends.sorted(by: { $0.searchUserName < $1.searchUserName })
                     self.tableView.reloadData()
                 }
                 
@@ -80,5 +71,22 @@ extension HomeViewController: UITableViewDataSource {
  
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+            return .delete
+        }
+        
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                
+                databaseManager.deleteFriend(friends[indexPath.row].searchUserUID)
+                
+                tableView.beginUpdates()
+                friends.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+                
+            }
+        }
     
 }

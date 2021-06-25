@@ -14,6 +14,10 @@ class FriendRequestViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+ 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
         tableView.dataSource = self
         
@@ -39,10 +43,7 @@ class FriendRequestViewController: UIViewController {
     
         
         tableView.register(UINib(nibName: "FriendReqCell", bundle: nil), forCellReuseIdentifier: "FriendReqCell")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+        
     }
     
 }
