@@ -27,26 +27,28 @@ class SearchViewController: UIViewController {
         searchBar.delegate = self
         searchUserResults = []
         
-        db.collection("User Details").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    // print("\(document.documentID) => \(document.data())")
-                    
+        let userDetails = db.collection("User Details")
+        
+        userDetails.whereField("Username", isNotEqualTo: username)
+            .addSnapshotListener (includeMetadataChanges: true) { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("Error fetching documents: \(error!)")
+                    return
+                }
+                for document in documents {
+                
                     if document.documentID != Auth.auth().currentUser!.uid {
                         
                         if let username = document.data()["Username"] as? String,
                            let profileURLString = document.data()["profileImageURL"] as? String {
                             
                             self.searchUsers.append(SearchUser(searchUserName: username,
-                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
-                                                       searchUserUID: document.documentID))
+                                                               searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
+                                                               searchUserUID: document.documentID))
                         }
                     }
                 }
             }
-        }
             
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
@@ -81,6 +83,7 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     // This method updates filteredFriends based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchUserResults = searchText.isEmpty ? [] : searchUsers.filter { (item: SearchUser) -> Bool in
+//            return item.searchUserName[...searchText.endIndex].contains(searchText)
             return item.searchUserName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
         
