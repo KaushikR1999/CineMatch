@@ -37,7 +37,7 @@ class SearchViewController: UIViewController {
                 }
                 for document in documents {
                 
-                    if document.documentID != Auth.auth().currentUser!.uid {
+                    if document.documentID != Auth.auth().currentUser?.uid {
                         
                         if let username = document.data()["Username"] as? String,
                            let profileURLString = document.data()["profileImageURL"] as? String {
@@ -49,7 +49,8 @@ class SearchViewController: UIViewController {
                     }
                 }
             }
-            
+    
+        print(searchUsers)
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
     
@@ -86,9 +87,14 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
 //            return item.searchUserName[...searchText.endIndex].contains(searchText)
             return item.searchUserName.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
-        
-        
-        
         tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.autocapitalizationType = .none
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dismissKeyboard()
     }
 }

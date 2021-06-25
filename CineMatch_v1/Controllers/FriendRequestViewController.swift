@@ -50,8 +50,6 @@ class FriendRequestViewController: UIViewController {
                     print("Error fetching document: \(error!)")
                     return
                 }
-                // let source = document.metadata.hasPendingWrites ? "Local" : "Server"
-                // print("\(source) data: \(document.data() ?? [:])")
                 friendRequestsUID = document.data()!["FriendRequestsReceived"] as! [String]
                 print (friendRequestsUID)
                 print (self.friendRequests)

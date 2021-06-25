@@ -11,56 +11,15 @@ class HomeViewController: UIViewController {
     var friends: [SearchUser] = []
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+        // super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         tableView.dataSource = self
         
-//        databaseManager.getFriends(callback: { (friendArray) in
-//            for friend in friendArray {
-//                userDetails.document(friend).getDocument { (document, error) in
-//                    if let document = document, document.exists {
-//                        let profileURLString = document.data()!["profileImageURL"] as? String
-//                        self.friends.append(SearchUser(
-//                                                searchUserName: (document.data()!["Username"] as? String)!,
-//                                                searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
-//                                                searchUserUID: document.documentID))
-//                    }
-//
-//                    self.tableView.reloadData()
-//                }
-//
-//            }
-//
-//        }
-//        )
-        
-        //        db.collection("User Details").getDocuments() { (querySnapshot, err) in
-        //            if let err = err {
-        //                print("Error getting documents: \(err)")
-        //            } else {
-        //                for document in querySnapshot!.documents {
-        //                    // print("\(document.documentID) => \(document.data())")
-        //
-        //                    if document.documentID != Auth.auth().currentUser!.uid {
-        //
-        //                        if let username = document.data()["Username"] as? String,
-        //                           let profileURLString = document.data()["profileImageURL"] as? String {
-        //
-        //                            self.friends.append(SearchUser(searchUserName: username,
-        //                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
-        //                                                       searchUserUID: document.documentID))
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
+        print ("Yes")
         
         var friendsUID: [String] = []
         friends = []
@@ -71,26 +30,32 @@ class HomeViewController: UIViewController {
                     print("Error fetching document: \(error!)")
                     return
                 }
-                // let source = document.metadata.hasPendingWrites ? "Local" : "Server"
-                // print("\(source) data: \(document.data() ?? [:])")
                 friendsUID = document.data()!["Friends"] as! [String]
-                for friend in friendsUID {
+                print ("Before \(friendsUID.count)")
+                print ("Before \(self.friends.count)")
+                for friendUID in friendsUID {
                     
-                    userDetails.document(friend).addSnapshotListener (includeMetadataChanges: true) { documentSnapshot, error in
+                    userDetails.document(friendUID).addSnapshotListener () { documentSnapshot, error in
                         guard let document = documentSnapshot else {
                             print("Error fetching document: \(error!)")
                             return
                         }
-                        let profileURLString = document.data()!["profileImageURL"] as? String
+                        let profileURLString = document.data()?["profileImageURL"] as? String
                         self.friends.append(SearchUser(
                                                 searchUserName: (document.data()!["Username"] as? String)!,
                                                 searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
                                                 searchUserUID: document.documentID))
+                        print ("During \(friendsUID.count)")
+                        print ("During \(self.friends.count)")
                     }
                 }
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                print ("After \(friendsUID.count)")
+                print ("After \(self.friends.count)")
             }
-         
+        
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
 }
