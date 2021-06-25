@@ -20,27 +20,6 @@ class HomeViewController: UIViewController {
         
         tableView.dataSource = self
         
-//        db.collection("User Details").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    // print("\(document.documentID) => \(document.data())")
-//
-//                    if document.documentID != Auth.auth().currentUser!.uid {
-//
-//                        if let username = document.data()["Username"] as? String,
-//                           let profileURLString = document.data()["profileImageURL"] as? String {
-//
-//                            self.friends.append(SearchUser(searchUserName: username,
-//                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
-//                                                       searchUserUID: document.documentID))
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        
         friends = []
         let userDetails = db.collection("User Details")
         databaseManager.getFriends(callback: { (friendArray) in
@@ -61,6 +40,16 @@ class HomeViewController: UIViewController {
             
         }
         )
+        
+        userDetails.document(Auth.auth().currentUser!.uid)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+                print("\(source) data: \(document.data() ?? [:])")
+            }
                 
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
