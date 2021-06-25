@@ -6,6 +6,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    
     var searchUsers: [SearchUser] = []
     
     var searchUserResults: [SearchUser]!

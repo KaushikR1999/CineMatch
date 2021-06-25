@@ -18,8 +18,9 @@ class FriendReqCell: UITableViewCell {
     @IBOutlet weak var friendReqDeclineButton: UIButton!
     
     let databaseManager = DatabaseManager()
+    let friendReqVC = FriendRequestViewController()
     
-    var searchUserUID: String?
+    var friendReqUID: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,12 +32,15 @@ class FriendReqCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     @IBAction func friendReqAcceptPressed(_ sender: UIButton) {
-        databaseManager.acceptFriendReq(searchUserUID!)
+        databaseManager.acceptFriendReq(friendReqUID!)
+
     }
     
     @IBAction func friendReqDeclinePressed(_ sender: UIButton) {
-        databaseManager.declineFriendReq(searchUserUID!)
+        databaseManager.declineFriendReq(friendReqUID!)
+        
     }
     
 }

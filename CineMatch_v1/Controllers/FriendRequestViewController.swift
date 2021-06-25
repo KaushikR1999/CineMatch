@@ -8,11 +8,7 @@ class FriendRequestViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var friendRequests: [SearchUser] = [
-        SearchUser(searchUserName: "Mary Jane", searchUserImage: #imageLiteral(resourceName: "Mary Jane"), searchUserUID: ""),
-        SearchUser(searchUserName: "Harry Osborn", searchUserImage: #imageLiteral(resourceName: "Harry Osborn"), searchUserUID: ""),
-        SearchUser(searchUserName: "Gwen Stacy", searchUserImage: #imageLiteral(resourceName: "Gwen Stacy"), searchUserUID: "")
-    ]
+    var friendRequests: [SearchUser] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,28 +17,32 @@ class FriendRequestViewController: UIViewController {
         
         tableView.dataSource = self
         
-        db.collection("User Details").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    // print("\(document.documentID) => \(document.data())")
-                    
-                    if document.documentID != Auth.auth().currentUser!.uid {
-                        
-                        if let username = document.data()["Username"] as? String,
-                           let profileURLString = document.data()["profileImageURL"] as? String {
-                            
-                            self.friendRequests.append(SearchUser(searchUserName: username,
-                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
-                                                       searchUserUID: document.documentID))
-                        }
+        let userDetails = db.collection("User Details")
+        databaseManager.getFriendRequests(callback: { (friendRequestArray) in
+            for friendRequest in friendRequestArray {
+                userDetails.document(friendRequest).getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        let profileURLString = document.data()!["profileImageURL"] as? String
+                        self.friendRequests.append(SearchUser(
+                                                searchUserName: (document.data()!["Username"] as? String)!,
+                                                searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
+                                                searchUserUID: document.documentID))
                     }
+                    
+                    self.tableView.reloadData()
                 }
+                
             }
+            
         }
+        )
+    
         
         tableView.register(UINib(nibName: "FriendReqCell", bundle: nil), forCellReuseIdentifier: "FriendReqCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
 }
@@ -58,6 +58,9 @@ extension FriendRequestViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendReqCell", for: indexPath) as! FriendReqCell
         cell.friendReqName.text = friendRequests[indexPath.row].searchUserName
         cell.friendReqImage.image = friendRequests[indexPath.row].searchUserImage
+        cell.friendReqUID = friendRequests[indexPath.row].searchUserUID
+        
+        
         return cell
     }
     
