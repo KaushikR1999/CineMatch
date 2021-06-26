@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol SearchUserSessionCellDelegate {
+    
+    func SendFriendReq(uid: String, username: String)
+}
+
 class SearchUserSessionCell: UITableViewCell {
 
     @IBOutlet weak var searchUserImage: UIImageView!
@@ -15,7 +20,7 @@ class SearchUserSessionCell: UITableViewCell {
     
     @IBOutlet weak var searchUserRequestButton: UIButton!
     
-    let databaseManager = DatabaseManager()
+    var delegate : SearchUserSessionCellDelegate?
     
     var searchUserUID: String?
     
@@ -36,7 +41,9 @@ class SearchUserSessionCell: UITableViewCell {
     
     @IBAction func searchUserRequestPressed(_ sender: UIButton) {
         
-        databaseManager.SendFriendReq(searchUserUID!)
+        delegate?.SendFriendReq(uid: searchUserUID!, username: searchUserName.text!)
+        
+    
         
     }
     

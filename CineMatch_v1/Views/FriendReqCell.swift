@@ -7,7 +7,18 @@
 
 import UIKit
 
+
+protocol FriendReqCellDelegate {
+    
+    func friendReqAcceptPressed(uid: String)
+    
+    func friendReqDeclinePressed(uid: String)
+    
+}
+
 class FriendReqCell: UITableViewCell {
+    
+    var delegate: FriendReqCellDelegate?
 
 
     @IBOutlet weak var friendReqImage: UIImageView!
@@ -16,9 +27,6 @@ class FriendReqCell: UITableViewCell {
     
     @IBOutlet weak var friendReqAcceptButton: UIButton!
     @IBOutlet weak var friendReqDeclineButton: UIButton!
-    
-    let databaseManager = DatabaseManager()
-    let friendReqVC = FriendRequestViewController()
     
     var friendReqUID: String?
     
@@ -39,14 +47,14 @@ class FriendReqCell: UITableViewCell {
     }
     
     @IBAction func friendReqAcceptPressed(_ sender: UIButton) {
-
-        self.databaseManager.acceptFriendReq(self.friendReqUID!)
-    
-        }
-    
-    @IBAction func friendReqDeclinePressed(_ sender: UIButton) {
-        databaseManager.declineFriendReq(friendReqUID!)
         
+        delegate?.friendReqAcceptPressed(uid: friendReqUID!)
     }
     
+    @IBAction func friendReqDeclinePressed(_ sender: UIButton) {
+        
+        delegate?.friendReqDeclinePressed(uid: friendReqUID!)
+ 
+        
+    }
 }

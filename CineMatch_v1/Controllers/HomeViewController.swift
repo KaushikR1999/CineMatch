@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
             if friendRequestsReceived.count > 0 {
                 self.friendRequestsIcon.image = UIImage(systemName: "person.crop.circle.badge.exclamationmark")
             } else {
+                
                 self.friendRequestsIcon.image = UIImage(systemName: "person.2.fill")
             }
         })

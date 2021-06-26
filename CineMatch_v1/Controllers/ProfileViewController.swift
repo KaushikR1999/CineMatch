@@ -48,6 +48,7 @@ class ProfileViewController: UIViewController {
         userNameTextField.delegate = self
         userNameTextField.autocorrectionType = .no
         userNameTextField.autocapitalizationType = .none
+        
        
         
         // Display User's Email in userEmail Label

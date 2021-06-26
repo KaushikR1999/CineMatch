@@ -122,7 +122,7 @@ struct DatabaseManager {
     }
     
 
-    func SendFriendReq(_ SearchUserUID: String) {
+    func sendFriendReq(_ SearchUserUID: String) {
         
         if !checkIfFriendReqSent(SearchUserUID) && !checkIfFriendReqReceived(SearchUserUID) {
             
@@ -155,7 +155,7 @@ struct DatabaseManager {
         
     }
     
-    func acceptFriendReq(_ SearchUserUID: String) {
+    func acceptFriendReq(_ SearchUserUID: String, callback: @escaping () -> Void) {
    
             if currentUser != nil {
                 currentUserDetails.updateData(
@@ -165,29 +165,29 @@ struct DatabaseManager {
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
-                        // print("Document successfully updated")
+                        let searchUserDetails = Firestore.firestore()
+                            .collection("User Details").document(SearchUserUID)
+                        
+                        searchUserDetails.updateData(
+                            ["Friends": FieldValue.arrayUnion([currentUser!.uid]),
+                             "FriendRequestsSent": FieldValue.arrayRemove([currentUser!.uid])])
+                        { err in
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                callback()
+                            }
+                        }
                     }
                 }
             }
             
-            let searchUserDetails = Firestore.firestore()
-                .collection("User Details").document(SearchUserUID)
-            
-            searchUserDetails.updateData(
-                ["Friends": FieldValue.arrayUnion([currentUser!.uid]),
-                 "FriendRequestsSent": FieldValue.arrayRemove([currentUser!.uid])])
-            { err in
-                if let err = err {
-                    print("Error updating document: \(err)")
-                } else {
-                    // print("Document successfully updated")
-                }
-            }
+
     
         
         }
     
-    func declineFriendReq(_ SearchUserUID: String) {
+    func declineFriendReq(_ SearchUserUID: String, callback: @escaping () -> Void) {
         
         if currentUser != nil {
             currentUserDetails.updateData(
@@ -196,23 +196,25 @@ struct DatabaseManager {
                 if let err = err {
                     print("Error updating document: \(err)")
                 } else {
-                    // print("Document successfully updated")
+                    let searchUserDetails = Firestore.firestore()
+                        .collection("User Details").document(SearchUserUID)
+                    
+                    searchUserDetails.updateData(
+                        ["FriendRequestsSent": FieldValue.arrayRemove([currentUser!.uid])])
+                    { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            callback()
+                        }
+                    }
+                    
                 }
             }
+            
+            
         }
         
-        let searchUserDetails = Firestore.firestore()
-            .collection("User Details").document(SearchUserUID)
-        
-        searchUserDetails.updateData(
-            ["FriendRequestsSent": FieldValue.arrayRemove([currentUser!.uid])])
-        { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                // print("Document successfully updated")
-            }
-        }
     }
     
 

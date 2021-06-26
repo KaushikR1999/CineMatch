@@ -1,7 +1,10 @@
 import UIKit
 import Firebase
 
-class FriendRequestViewController: UIViewController {
+
+
+
+class FriendRequestViewController: UIViewController{
     
     let db = Firestore.firestore()
     let databaseManager = DatabaseManager()
@@ -14,14 +17,20 @@ class FriendRequestViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
- 
+        tableView.dataSource = self
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        tableView.dataSource = self
+        loadTable()
+        tableView.reloadData()
+    
+    }
+    
+    func loadTable() {
         
         let userDetails = db.collection("User Details")
+        
         databaseManager.getFriendRequests(callback: { (friendRequestArray) in
             for friendRequest in friendRequestArray {
                 userDetails.document(friendRequest).getDocument { (document, error) in
@@ -50,13 +59,21 @@ class FriendRequestViewController: UIViewController {
 
 // MARK: - TableView DataSource Methods
 
-extension FriendRequestViewController: UITableViewDataSource {
+extension FriendRequestViewController: UITableViewDataSource, FriendReqCellDelegate {
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendRequests.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendReqCell", for: indexPath) as! FriendReqCell
+        
+        cell.delegate = self
+        
         cell.friendReqName.text = friendRequests[indexPath.row].searchUserName
         cell.friendReqImage.image = friendRequests[indexPath.row].searchUserImage
         cell.friendReqUID = friendRequests[indexPath.row].searchUserUID
@@ -65,4 +82,20 @@ extension FriendRequestViewController: UITableViewDataSource {
         return cell
     }
     
+    
+    func friendReqAcceptPressed(uid: String) {
+        databaseManager.acceptFriendReq(uid, callback: {
+            self.loadTable()
+            self.tableView.reloadData()
+            
+        })}
+    
+    
+    
+    func friendReqDeclinePressed(uid: String) {
+        databaseManager.declineFriendReq(uid, callback: {
+            self.tableView.reloadData()
+        })}
 }
+
+

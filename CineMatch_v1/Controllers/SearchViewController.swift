@@ -5,8 +5,7 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    
+        
     var searchUsers: [SearchUser] = []
     
     var searchUserResults: [SearchUser]!
@@ -68,6 +67,7 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
         cell.searchUserName.text = searchUserResults[indexPath.row].searchUserName
         cell.searchUserImage.image = searchUserResults[indexPath.row].searchUserImage
         cell.searchUserUID = searchUserResults[indexPath.row].searchUserUID
+        cell.delegate = self
         
         databaseManager.checkIfFriends(cell.searchUserUID!, callback: { (ifFriends) in
             cell.searchUserRequestButton.isHidden = ifFriends
@@ -96,4 +96,15 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
     }
+    
+
+}
+
+extension SearchViewController: SearchUserSessionCellDelegate {
+    
+    func SendFriendReq(uid: String, username: String) {
+        
+        databaseManager.sendFriendReq(uid)
+    }
+    
 }
