@@ -4,14 +4,31 @@
 
 Kaushik Rangaraj & Kaushik Kumar
 
-## **How to Setup**
+# Table of Contents
+
+- [Status] (#Status)
+- [Tech Stack] (#Tech-Stack)
+- [How to Setup] (#How-to-Setup)
+- [Features] (#Features)
+
+# Status
+
+App is in the development stage
+
+# Tech Stack
+
+- iOS Storyboard
+- Firebase
+
+# **How to Setup**
 
 1. To use CineMatch, clone from Github. Open XCode and click “Clone an existing project” and paste the repository URL. 
 2. If the following message shows up when running the simulator:  “"No supported iOS devices are available. Connect a device to run your application or choose a simulated device as the destination”, check if XCode version is up to date. Else, change iOS version to relevant version (i.e. 14.3 or lower)
-3. Build and run the project
-4. Below are the relevant descriptions of each page of the app to support new users
+3. On the top left corner of XCode, change the iOS Simulator to iPhone 11 for optimal experience.
+4. Build and run the project
+5. Below are the relevant descriptions of each page of the app to support new users
 
-## **CineMatch Features**
+# **Features**
 
 **Login Page**
 
@@ -41,6 +58,7 @@ Kaushik Rangaraj & Kaushik Kumar
 | Buttons     | Functions   |
 | ----------- | ----------- |
 | Sign up here   | Leads New User to Home Page if sign up successful       |
+| Back   | Leads User back to Login Page       |
 
 
 **Profile Page**
@@ -48,7 +66,7 @@ Kaushik Rangaraj & Kaushik Kumar
 *Account details of User (Profile picture, Username, Email, Region)*
 *Able to log out of account from this page*
 
-| Text fields     | Functions   |
+| Text field     | Function   |
 | ----------- | ----------- |
 | Username     | User is able to modify Username       |
 
@@ -59,6 +77,13 @@ Kaushik Rangaraj & Kaushik Kumar
 | Profile     | -       |
 | Log Out   | Logs User out of account and leads to Home Page        |
 
+| Image View     | Functions   |
+| ----------- | ----------- |
+| Profile Picture     | User is able to add & modify profile picture       |
+
+| Pickerview     | Function   |
+| ----------- | ----------- |
+| Region     | User is able to select & modify region of user       |
 
 **Home Page**
 
@@ -69,8 +94,9 @@ Kaushik Rangaraj & Kaushik Kumar
 | Home     | -       |
 | Search   | Leads to Search Page        |
 | Profile     | Leads to Profile page       |
-| Restore   | Leads to Past Sessions Page        |
-| Friends     | Leads to Movie Swipe Page (Creating a new session with respective users)       |
+| Friend Requests   | Leads to Friend Requests Page        |
+| Swipe   | Leads to Movie Swipe Page        |
+| Friends     | Leads to Matches Page      |
 
 
 **Search Page**
@@ -82,11 +108,11 @@ Kaushik Rangaraj & Kaushik Kumar
 | Home     | Leads to Home Page       |
 | Search   | -        |
 | Profile     | Leads to Profile page       |
+| Add button on respective user (displayed only if users are not friends)  | Sends friend request to user if users are not friends / friend request not sent before   |
 
+**Friend Requests Page**
 
-**Past Sessions Page**
-
-*Past sessions with friends displayed here (Data & Name of friend serve as labels)*
+*Friend Requests Received displayed here (Username & Profile Picture of other user serve as labels)*
 
 | Buttons     | Functions   |
 | ----------- | ----------- |
@@ -94,23 +120,20 @@ Kaushik Rangaraj & Kaushik Kumar
 | Search   | Leads to Search Page        |
 | Profile     | Leads to Profile page       |
 | Back   | Returns to Home Page       |
-| Sessions (Date of Session & Username of Friend)     | Leads to relevant Past Session Info Page       |
+| Add button on respective friend request     | Accepts friend request of user       |
+| Decline button on respective friend request     | Declines friend request of user       |
 
+**Movie Matches Page**
 
-**Past Sessions Info Page**
-
-*Matches made during previous session displayed here*
+*Matches made with friend displayed here*
 
 | Buttons     | Functions   |
 | ----------- | ----------- |
 | Home     | Leads to Home Page       |
 | Search   | Leads to Search Page        |
 | Profile     | Leads to Profile page       |
-| Back   | Returns to Past Sessions Page       |
-| Delete      | Deletes the session for both users in question & returns to Past Sessions Page       |
-| Rejoin     | Leads to Movie Swipe Page to resume session       |
+| Back   | Returns to Home Page       |
 | Movies (Matches made during session)      | Leads to relevant Movie Info Page       |
-
 
 **Movie Swipe Page**
 
@@ -124,8 +147,6 @@ Kaushik Rangaraj & Kaushik Kumar
 | Profile     | Leads to Profile page       |
 | Back   | Returns to Past Sessions Info Page       |
 | Movie      | Leads to relevant Movie Info Page       |
-| Matches      | Displays number of Matches during sessions & leads to Movie Matches Page       |
-
 
 **Movie Info Page**
 
@@ -137,16 +158,3 @@ Kaushik Rangaraj & Kaushik Kumar
 | Search   | Leads to Search Page        |
 | Profile     | Leads to Profile page       |
 | Back   | Returns to Past Sessions Info Page       |
-
-
-**Movie Matches Page**
-
-*Matches made during session displayed here*
-
-| Buttons     | Functions   |
-| ----------- | ----------- |
-| Home     | Leads to Home Page       |
-| Search   | Leads to Search Page        |
-| Profile     | Leads to Profile page       |
-| Back   | Returns to Movie Swipe Page       |
-| Movies (Matches made during session)      | Leads to relevant Movie Info Page       |
