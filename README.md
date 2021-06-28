@@ -6,10 +6,10 @@ Kaushik Rangaraj & Kaushik Kumar
 
 # Table of Contents
 
-- [Status] (#Status)
-- [Tech Stack] (#Tech-Stack)
-- [How to Setup] (#How-to-Setup)
-- [Features] (#Features)
+- Status
+- Tech Stack
+- How to Setup
+- Features
 
 # Status
 
