@@ -10,14 +10,15 @@ class FriendRequestViewController: UIViewController {
     
     var friendRequests: [SearchUser] = []
 
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
- 
         // Do any additional setup after loading the view.
         
         tableView.dataSource = self
@@ -45,17 +46,17 @@ class FriendRequestViewController: UIViewController {
         var friendRequestsUID: [String] = []
         friendRequests = []
         userDetails.document(Auth.auth().currentUser!.uid)
-            .addSnapshotListener (includeMetadataChanges: true) { documentSnapshot, error in
+            .addSnapshotListener () { documentSnapshot, error in
                 guard let document = documentSnapshot else {
                     print("Error fetching document: \(error!)")
                     return
                 }
                 friendRequestsUID = document.data()!["FriendRequestsReceived"] as! [String]
-                print (friendRequestsUID)
-                print (self.friendRequests)
+                print ("Before \(friendRequestsUID.count)")
+                print ("Before \(self.friendRequests.count)")
                 for friendRequestUID in friendRequestsUID {
                     
-                    userDetails.document(friendRequestUID).addSnapshotListener (includeMetadataChanges: true) { documentSnapshot, error in
+                    userDetails.document(friendRequestUID).addSnapshotListener () { documentSnapshot, error in
                         guard let document = documentSnapshot else {
                             print("Error fetching document: \(error!)")
                             return
@@ -65,14 +66,18 @@ class FriendRequestViewController: UIViewController {
                                                 searchUserName: (document.data()!["Username"] as? String)!,
                                                 searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
                                                 searchUserUID: document.documentID))
+                        print ("During 1 \(self.friendRequests.count)")
+                        print ("During 1 \(self.friendRequests.count)")
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
+                    print ("During \(self.friendRequests.count)")
+                    print ("During \(self.friendRequests.count)")
                 }
-                print (self.friendRequests)
-                self.tableView.reloadData()
-                print (self.friendRequests)
             }
     
-        print (friendRequests)
+        print ("After \(friendRequests)")
         tableView.register(UINib(nibName: "FriendReqCell", bundle: nil), forCellReuseIdentifier: "FriendReqCell")
     }
     

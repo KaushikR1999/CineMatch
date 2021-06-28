@@ -30,7 +30,7 @@ class SearchViewController: UIViewController {
         let userDetails = db.collection("User Details")
         
         userDetails.whereField("Username", isNotEqualTo: username)
-            .addSnapshotListener (includeMetadataChanges: true) { querySnapshot, error in
+            .addSnapshotListener () { querySnapshot, error in
                 guard let documents = querySnapshot?.documents else {
                     print("Error fetching documents: \(error!)")
                     return
@@ -46,6 +46,9 @@ class SearchViewController: UIViewController {
                                                                searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
                                                                searchUserUID: document.documentID))
                         }
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
                     }
                 }
             }

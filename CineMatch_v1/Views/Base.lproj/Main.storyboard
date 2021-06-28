@@ -271,6 +271,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="friendRequestsIcon" destination="SmZ-AF-RqD" id="YEg-pz-mma"/>
                         <outlet property="tableView" destination="5bg-dZ-L9k" id="rka-fV-frx"/>
                     </connections>
                 </viewController>

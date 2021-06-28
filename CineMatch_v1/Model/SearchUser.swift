@@ -8,6 +8,6 @@ struct SearchUser {
     let searchUserUID: String
     
     let currentUserDetails = Firestore.firestore()
-        .collection("User Details").document(Auth.auth().currentUser?.uid ?? "")
+        .collection("User Details").document(Auth.auth().currentUser!.uid)
     
 }
