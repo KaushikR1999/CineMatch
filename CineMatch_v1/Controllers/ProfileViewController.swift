@@ -56,30 +56,62 @@ class ProfileViewController: UIViewController {
         
         // Retrieve user details from database & display 
         let user = db.collection("User Details").document(Auth.auth().currentUser!.uid)
-        user.getDocument { (document, error) in
-            if let document = document, document.exists {
-                self.userNameTextField.text = document.data()!["Username"] as? String
-                self.username = self.userNameTextField.text!
-                self.regionTextField.text = document.data()!["Region"] as? String
-                
-                /* if profileURLString is empty, display default system icon if not
-                 retrieve profileURLString and display the picture from the URL
-                 */
-                
-                let profileURLString = document.data()!["profileImageURL"] as? String
-                
-                guard let profileURL = profileURLString, !profileURL.isEmpty else {
-                    return
-                }
-                
-                self.databaseManager.setProfilePic(
-                        profilePicture: self.profilePicture,
-                        profileURLString: profileURLString)
-                }
-            
-            else {
-                print("Document does not exist")
+        
+//        user.getDocument { (document, error) in
+//            DispatchQueue.main.async {
+//                if let document = document, document.exists {
+//                    self.userNameTextField.text = document.data()!["Username"] as? String
+//                    self.username = self.userNameTextField.text!
+//                    self.regionTextField.text = document.data()!["Region"] as? String
+//
+//                    /* if profileURLString is empty, display default system icon if not
+//                     retrieve profileURLString and display the picture from the URL
+//                     */
+//
+//                    let profileURLString = document.data()!["profileImageURL"] as? String
+//
+//                    guard let profileURL = profileURLString, !profileURL.isEmpty else {
+//                        return
+//                    }
+//
+//                    self.databaseManager.setProfilePic(
+//                            profilePicture: self.profilePicture,
+//                            profileURLString: profileURLString)
+//                    }
+//                else {
+//                    print("Document does not exist")
+//                }
+//            }
+//
+//        }
+        
+        user.addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
             }
+            guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+            }
+            print("Current data: \(data)")
+            self.userNameTextField.text = document.data()!["Username"] as? String
+            self.username = self.userNameTextField.text!
+            self.regionTextField.text = document.data()!["Region"] as? String
+            
+            /* if profileURLString is empty, display default system icon if not
+             retrieve profileURLString and display the picture from the URL
+             */
+            
+            let profileURLString = document.data()!["profileImageURL"] as? String
+            
+            guard let profileURL = profileURLString, !profileURL.isEmpty else {
+                return
+            }
+            
+            self.databaseManager.setProfilePic(
+                profilePicture: self.profilePicture,
+                profileURLString: profileURLString)
         }
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))

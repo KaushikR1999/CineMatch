@@ -11,12 +11,13 @@ class HomeViewController: UIViewController {
     
     var friends: [SearchUser] = []
     
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         // Do any additional setup after loading the view.
         
         tableView.dataSource = self
@@ -35,22 +36,27 @@ class HomeViewController: UIViewController {
         friends = []
         let userDetails = db.collection("User Details")
         databaseManager.getFriends(callback: { (friendArray) in
-            for friend in friendArray {
-                userDetails.document(friend).getDocument { (document, error) in
-                    if let document = document, document.exists {
-                        let profileURLString = document.data()!["profileImageURL"] as? String
-                        self.friends.append(SearchUser(
-                                                searchUserName: (document.data()!["Username"] as? String)!,
-                                                searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
-                                                searchUserUID: document.documentID))
-                    }
-        
-                    self.friends = self.friends.sorted(by: { $0.searchUserName < $1.searchUserName })
-                    self.tableView.reloadData()
-                }
-                
-            }
+            DispatchQueue.global().async {
+                for friend in friendArray {
+                    userDetails.document(friend).getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let profileURLString = document.data()!["profileImageURL"] as? String
+                            self.friends.append(SearchUser(
+                                                    searchUserName: (document.data()!["Username"] as? String)!,
+                                                    searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
+                                                    searchUserUID: document.documentID))
+                        }
             
+                        self.friends = self.friends.sorted(by: { $0.searchUserName < $1.searchUserName })
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                         
+                    }
+                    
+                }
+            }
+
         }
         )
                 
