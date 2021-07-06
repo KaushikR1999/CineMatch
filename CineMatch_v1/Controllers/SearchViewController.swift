@@ -26,26 +26,54 @@ class SearchViewController: UIViewController {
         searchBar.delegate = self
         searchUserResults = []
         
-        db.collection("User Details").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    // print("\(document.documentID) => \(document.data())")
-                    
-                    if document.documentID != Auth.auth().currentUser!.uid {
+//        db.collection("User Details").getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    // print("\(document.documentID) => \(document.data())")
+//
+//                    if document.documentID != Auth.auth().currentUser!.uid {
+//
+//                        if let username = document.data()["Username"] as? String,
+//                           let profileURLString = document.data()["profileImageURL"] as? String {
+//
+//                            self.searchUsers.append(SearchUser(searchUserName: username,
+//                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
+//                                                       searchUserUID: document.documentID))
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        
+        let userDetails = db.collection("User Details")
+        
+        userDetails.whereField("Username", isNotEqualTo: username)
+            .addSnapshotListener () { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("Error fetching documents: \(error!)")
+                    return
+                }
+                DispatchQueue.global().async {
+                    for document in documents {
                         
-                        if let username = document.data()["Username"] as? String,
-                           let profileURLString = document.data()["profileImageURL"] as? String {
+                        if document.documentID != Auth.auth().currentUser?.uid {
                             
-                            self.searchUsers.append(SearchUser(searchUserName: username,
-                                                       searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
-                                                       searchUserUID: document.documentID))
+                            if let username = document.data()["Username"] as? String,
+                               let profileURLString = document.data()["profileImageURL"] as? String {
+                                
+                                self.searchUsers.append(SearchUser(searchUserName: username,
+                                                                   searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
+                                                                   searchUserUID: document.documentID))
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
                         }
                     }
                 }
             }
-        }
     
 
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
