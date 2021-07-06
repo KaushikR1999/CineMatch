@@ -35,25 +35,27 @@ class SearchViewController: UIViewController {
                     print("Error fetching documents: \(error!)")
                     return
                 }
-                for document in documents {
-                
-                    if document.documentID != Auth.auth().currentUser?.uid {
-                        
-                        if let username = document.data()["Username"] as? String,
-                           let profileURLString = document.data()["profileImageURL"] as? String {
+                DispatchQueue.global().async {
+                    for document in documents {
+                    
+                        if document.documentID != Auth.auth().currentUser?.uid {
                             
-                            self.searchUsers.append(SearchUser(searchUserName: username,
-                                                               searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
-                                                               searchUserUID: document.documentID))
+                            if let username = document.data()["Username"] as? String,
+                               let profileURLString = document.data()["profileImageURL"] as? String {
+                                
+                                self.searchUsers.append(SearchUser(searchUserName: username,
+                                                                   searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString),
+                                                                   searchUserUID: document.documentID))
+                            }
                         }
-                    }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
                 }
             }
     
-        print(searchUsers)
+        // print(searchUsers)
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
     

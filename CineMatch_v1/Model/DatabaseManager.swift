@@ -15,6 +15,18 @@ struct DatabaseManager {
     let currentUser = Auth.auth().currentUser
     
     
+//    func getFriends(callback: @escaping (_ friends: [String]) -> Void) {
+//
+//        currentUserDetails.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                if let friends = document.data()!["Friends"] as? [String] {
+//                    callback(friends)
+//
+//                }
+//            }
+//        }
+//    }
+    
     func getFriends(callback: @escaping (_ friends: [String]) -> Void) {
         
         currentUserDetails.getDocument { (document, error) in
@@ -55,6 +67,18 @@ struct DatabaseManager {
             }
         }
         
+//    func getFriendRequests(callback: @escaping (_ friendRequests: [String]) -> Void) {
+//
+//        currentUserDetails.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                if let friendRequests = document.data()!["FriendRequestsReceived"] as? [String] {
+//                    callback(friendRequests )
+//
+//                }
+//            }
+//        }
+//    }
+    
     func getFriendRequests(callback: @escaping (_ friendRequests: [String]) -> Void) {
         
         currentUserDetails.getDocument { (document, error) in
