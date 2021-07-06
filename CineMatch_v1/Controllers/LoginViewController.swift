@@ -6,17 +6,13 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        // checks if there is a user logged in, if so don't need to present log out page
         if Auth.auth().currentUser != nil {
             self.performSegue(withIdentifier: "loginToHome", sender: self)
         }
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
         
         // clears the TextFields when User comes to page
         emailTextField.text = ""
@@ -27,9 +23,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        emailTextField.autocorrectionType = .no
-        emailTextField.autocapitalizationType = .none
-        passwordTextField.autocorrectionType = .no
+        emailTextField.tag = 1
+        passwordTextField.tag = 2
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
     }
@@ -53,14 +52,26 @@ class LoginViewController: UIViewController {
                 
                 // Pop up alert in case of invalid entry
                 
-                let alert = UIAlertController(title: "Invalid Email/Password!", message: e.localizedDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                let alert = UIAlertController(
+                    title: "Invalid Email/Password!",
+                    message: e.localizedDescription,
+                    preferredStyle: .alert)
+                
+                alert.addAction(
+                    UIAlertAction(
+                        title: "Try Again!",
+                        style: .default,
+                        handler: nil))
+                
+                self.present(alert,
+                             animated: true,
+                             completion: nil)
                 
             } else {
                 // Segue from screen to screen & not button to screen as segueing from button will override this function and go to Home Page even if user has input invalid entry
                 
                 self.performSegue(withIdentifier: "loginToHome", sender: self)
+                
                 self.view.endEditing(true)
             }
         }
@@ -70,6 +81,22 @@ class LoginViewController: UIViewController {
 
     // Function to lead from Login page to Sign up Page for new User
     @IBAction func signUpPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "goToSignUp", sender: self)
+        self.performSegue(withIdentifier: "loginToRegister", sender: self)
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
+    }
+    
 }

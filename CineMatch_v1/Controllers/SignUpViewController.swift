@@ -11,25 +11,6 @@ class SignUpViewController: UIViewController {
     // Initialise Firestore database
     let db = Firestore.firestore()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        usernameTextField.autocorrectionType = .no
-        usernameTextField.autocapitalizationType = .none
-        
-        emailTextField.autocorrectionType = .no
-        emailTextField.autocapitalizationType = .none
-        
-        passwordTextField.autocorrectionType = .no
-        
-        // if user taps anywhere outside the keyboard, the keyboard is dismissed from view
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
@@ -40,10 +21,31 @@ class SignUpViewController: UIViewController {
         passwordTextField.text = ""
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        usernameTextField.tag = 1
+        emailTextField.tag = 2
+        passwordTextField.tag = 3
+
+        usernameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        // if user taps anywhere outside the keyboard, the keyboard is dismissed from view
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+    }
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.isNavigationBarHidden = true
     }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     
     @IBAction func signUpPressed(_ sender: UIButton) {
         
@@ -64,8 +66,18 @@ class SignUpViewController: UIViewController {
             // if username already exists, present error to user
             if let document = document, document.exists {
                 let message = "Please choose a different username"
-                let alert = UIAlertController(title: "Username taken", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
+                
+                let alert = UIAlertController(
+                    title: "Username taken",
+                    message: message,
+                    preferredStyle: .alert)
+                
+                alert.addAction(
+                    UIAlertAction(
+                        title: "Try Again!",
+                        style: .default,
+                        handler: nil))
+                
                 self.present(alert, animated: true, completion: nil)
                 
             }
@@ -77,8 +89,16 @@ class SignUpViewController: UIViewController {
                 Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                     if let e = error {
                         let alert = UIAlertController(title: "Invalid Email/Password!", message: e.localizedDescription, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Try Again!", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+                        
+                        alert.addAction(
+                            UIAlertAction(
+                                title: "Try Again!",
+                                style: .default,
+                                handler: nil))
+                        
+                        self.present(alert,
+                                     animated: true,
+                                     completion: nil)
                         
                     } else {
                         /*Save Username and default region as United States in User Details Collection
@@ -119,3 +139,18 @@ class SignUpViewController: UIViewController {
 
 }
 
+extension SignUpViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
+    }
+    
+}
