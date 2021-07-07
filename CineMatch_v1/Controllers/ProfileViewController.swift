@@ -94,7 +94,6 @@ class ProfileViewController: UIViewController {
                 print("Document data was empty.")
                 return
             }
-            print("Current data: \(data)")
             self.userNameTextField.text = document.data()!["Username"] as? String
             self.username = self.userNameTextField.text!
             self.regionTextField.text = document.data()!["Region"] as? String

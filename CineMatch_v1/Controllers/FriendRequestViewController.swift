@@ -46,7 +46,6 @@ class FriendRequestViewController: UIViewController{
                             print("Document data was empty.")
                             return
                         }
-                        print("Current data: \(data)")
                         let profileURLString = document.data()!["profileImageURL"] as? String
                         self.friendRequests.append(SearchUser(
                                                     searchUserName: (document.data()!["Username"] as? String)!,
@@ -96,16 +95,20 @@ extension FriendRequestViewController: UITableViewDataSource, FriendReqCellDeleg
     func friendReqAcceptPressed(uid: String) {
         self.friendRequests.removeAll()
         databaseManager.acceptFriendReq(uid, callback: {
-                self.loadTable()
-        })}
+            self.loadTable()
+        })
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+    }
     
     
     
     func friendReqDeclinePressed(uid: String) {
         self.friendRequests.removeAll()
         databaseManager.declineFriendReq(uid, callback: {
-            self.tableView.reloadData()
-        })}
+            self.loadTable()
+        })
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+    }
 }
 
 
