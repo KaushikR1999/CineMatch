@@ -18,11 +18,12 @@ class FriendRequestViewController: UIViewController{
 
         // Do any additional setup after loading the view.
         tableView.dataSource = self
+        loadTable()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadTable()
+        
         tableView.reloadData()
     
     }
@@ -31,31 +32,40 @@ class FriendRequestViewController: UIViewController{
         
         let userDetails = db.collection("User Details")
         
+        self.friendRequests.removeAll()
         databaseManager.getFriendRequests(callback: { (friendRequestArray) in
             for friendRequest in friendRequestArray {
-                userDetails.document(friendRequest).getDocument { (document, error) in
-                    if let document = document, document.exists {
+                
+                userDetails.document(friendRequest)
+                    .addSnapshotListener { documentSnapshot, error in
+                        guard let document = documentSnapshot else {
+                            print("Error fetching document: \(error!)")
+                            return
+                        }
+                        guard let data = document.data() else {
+                            print("Document data was empty.")
+                            return
+                        }
+                        print("Current data: \(data)")
                         let profileURLString = document.data()!["profileImageURL"] as? String
                         self.friendRequests.append(SearchUser(
-                                                searchUserName: (document.data()!["Username"] as? String)!,
-                                                searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
-                                                searchUserUID: document.documentID))
+                                                    searchUserName: (document.data()!["Username"] as? String)!,
+                                                    searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
+                                                    searchUserUID: document.documentID))
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
-                    
-                    self.tableView.reloadData()
-                }
-                
             }
             
-        }
-        )
-    
-        
-        tableView.register(UINib(nibName: "FriendReqCell", bundle: nil), forCellReuseIdentifier: "FriendReqCell")
-        
+        })
+
+    tableView.register(UINib(nibName: "FriendReqCell", bundle: nil), forCellReuseIdentifier: "FriendReqCell")
     }
     
 }
+
+
 
 // MARK: - TableView DataSource Methods
 
@@ -84,15 +94,15 @@ extension FriendRequestViewController: UITableViewDataSource, FriendReqCellDeleg
     
     
     func friendReqAcceptPressed(uid: String) {
+        self.friendRequests.removeAll()
         databaseManager.acceptFriendReq(uid, callback: {
-            self.loadTable()
-            self.tableView.reloadData()
-            
+                self.loadTable()
         })}
     
     
     
     func friendReqDeclinePressed(uid: String) {
+        self.friendRequests.removeAll()
         databaseManager.declineFriendReq(uid, callback: {
             self.tableView.reloadData()
         })}

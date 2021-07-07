@@ -39,7 +39,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAm-qw-AYa">
                                         <rect key="frame" x="270" y="9" width="20" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="plus.circle.fill" catalog="system"/>
+                                        <state key="normal" image="circle.dashed" catalog="system"/>
                                         <connections>
                                             <action selector="searchUserRequestPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LIG-G6-wuE"/>
                                         </connections>
@@ -69,6 +69,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="circle.dashed" catalog="system" width="128" height="121"/>
     </resources>
 </document>

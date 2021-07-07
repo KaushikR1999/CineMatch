@@ -82,6 +82,21 @@ struct DatabaseManager {
         
     }
     
+    func checkForFriendReqButton (_ SearchUserUID: String, callback: @escaping (_ status: Bool) -> Void) {
+        
+        var friendReqSentArray: [String]?
+        var friendReqReceivedArray: [String]?
+        
+        currentUserDetails.getDocument { (document, error) in
+            if let document = document, document.exists {
+                friendReqSentArray = document.data()!["FriendRequestsSent"] as? [String]
+                friendReqReceivedArray = document.data()!["FriendRequestsReceived"] as? [String]
+                callback(friendReqSentArray!.contains(SearchUserUID) || friendReqReceivedArray!.contains(SearchUserUID))
+            }
+        }
+
+    }
+    
                     
             
     func checkIfFriendReqSent(_ SearchUserUID: String) -> Bool {

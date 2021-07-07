@@ -36,8 +36,8 @@ class HomeViewController: UIViewController {
         friends = []
         let userDetails = db.collection("User Details")
         databaseManager.getFriends(callback: { (friendArray) in
-            DispatchQueue.global().async {
                 for friend in friendArray {
+
                     userDetails.document(friend).getDocument { (document, error) in
                         if let document = document, document.exists {
                             let profileURLString = document.data()!["profileImageURL"] as? String
@@ -46,19 +46,50 @@ class HomeViewController: UIViewController {
                                                     searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
                                                     searchUserUID: document.documentID))
                         }
-            
+
                         self.friends = self.friends.sorted(by: { $0.searchUserName < $1.searchUserName })
-                        DispatchQueue.main.async {
                             self.tableView.reloadData()
-                        }
-                         
+
                     }
-                    
+
                 }
             }
 
-        }
         )
+        
+        
+//        let userDetails = db.collection("User Details")
+//        databaseManager.getFriends(callback: { (friendArray) in
+//            for friend in friendArray {
+//
+//                userDetails.document(friend)
+//                    .addSnapshotListener (includeMetadataChanges: true) { documentSnapshot, error in
+//                        guard let document = documentSnapshot else {
+//                            print("Error fetching document: \(error!)")
+//                            return
+//                        }
+//                        guard let data = document.data() else {
+//                            print("Document data was empty.")
+//                            return
+//                        }
+////                        print("Current data: \(data)")
+//                        let profileURLString = data["profileImageURL"] as? String
+//                        self.friends.append(SearchUser(
+//                                                searchUserName: (data["Username"] as? String)!,
+//                                                searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
+//                                                searchUserUID: document.documentID))
+//                        self.friends = self.friends.sorted(by: { $0.searchUserName < $1.searchUserName })
+//                        DispatchQueue.main.async {
+//                            self.tableView.reloadData()
+//                            print (self.friends)
+//                        }
+//                    }
+//                print (self.friends)
+//
+//            }
+//        }
+//        )
+        
                 
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }

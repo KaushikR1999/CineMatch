@@ -98,16 +98,29 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
         cell.delegate = self
         
         databaseManager.checkIfFriends(cell.searchUserUID!, callback: { (ifFriends) in
-            cell.searchUserRequestButton.isHidden = ifFriends
-            DispatchQueue.main.async {
-                tableView.reloadData()
+            
+            if ifFriends {
+                cell.searchUserRequestButton.setImage(.none, for: .normal)
+            } else {
+                self.databaseManager.checkForFriendReqButton(cell.searchUserUID!, callback: { (ifSent) in
+                    
+                    if ifSent {
+                        let image = UIImage(systemName: "circle.dashed")
+                        cell.searchUserRequestButton.setImage(image, for: .normal)
+                    } else {
+                        let image = UIImage(systemName: "plus.circle.fill")
+                        cell.searchUserRequestButton.setImage(image, for: .normal)
+                    }
+                }
+                )
+                
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
             }
         })
-        
         return cell
     }
-    
-    
     
     // This method updates filteredFriends based on the text in the Search Box
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

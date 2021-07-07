@@ -85,7 +85,7 @@ class ProfileViewController: UIViewController {
 //
 //        }
         
-        user.addSnapshotListener { documentSnapshot, error in
+        user.addSnapshotListener (includeMetadataChanges: true) { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
                 return
