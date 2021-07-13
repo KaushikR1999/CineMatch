@@ -94,15 +94,15 @@ class ProfileViewController: UIViewController {
                 print("Document data was empty.")
                 return
             }
-            self.userNameTextField.text = document.data()!["Username"] as? String
+            self.userNameTextField.text = data["Username"] as? String
             self.username = self.userNameTextField.text!
-            self.regionTextField.text = document.data()!["Region"] as? String
+            self.regionTextField.text = data["Region"] as? String
             
             /* if profileURLString is empty, display default system icon if not
              retrieve profileURLString and display the picture from the URL
              */
             
-            let profileURLString = document.data()!["profileImageURL"] as? String
+            let profileURLString = data["profileImageURL"] as? String
             
             guard let profileURL = profileURLString, !profileURL.isEmpty else {
                 return

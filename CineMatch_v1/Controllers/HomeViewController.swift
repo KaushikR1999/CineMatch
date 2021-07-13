@@ -16,16 +16,21 @@ class HomeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         tableView.dataSource = self
+        // loadTable()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+//        NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: NSNotification.Name(rawValue: "load"), object: nil)
         loadTable()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadTable), name: NSNotification.Name(rawValue: "load"), object: nil)
+    override func viewDidDisappear(_ animated: Bool) {
+        // self.friends.removeAll()
     }
     
     @objc func loadTable() {
         
-        friends.removeAll()
+        // friends.removeAll()
         databaseManager.getFriendRequests(callback: { (friendRequestsReceived) in
             
             if friendRequestsReceived.count > 0 {
@@ -37,36 +42,39 @@ class HomeViewController: UIViewController {
         })
         
         let userDetails = db.collection("User Details")
-        databaseManager.getFriends(callback: { (friendArray) in
-            print(friendArray)
-            for friend in friendArray {
-
-                userDetails.document(friend)
-                    .addSnapshotListener { documentSnapshot, error in
-                        guard let document = documentSnapshot else {
-                            print("Error fetching document: \(error!)")
-                            return
+        DispatchQueue.global().async {
+            self.databaseManager.getFriends(callback: { (friendArray) in
+                self.friends.removeAll()
+                var x = 0
+                for friend in friendArray {
+                    /* let listener = */ userDetails.document(friend)
+                        .addSnapshotListener /* (includeMetadataChanges: true) */ { documentSnapshot, error in
+                            guard let document = documentSnapshot else {
+                                print("Error fetching document: \(error!)")
+                                return
+                            }
+                            guard let data = document.data() else {
+                                print("Document data was empty.")
+                                return
+                            }
+                            print (x)
+                            x = x+1
+                            let profileURLString = data["profileImageURL"] as? String
+                            self.friends.append(SearchUser(
+                                                    searchUserName: (data["Username"] as? String)!,
+                                                    searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
+                                                    searchUserUID: document.documentID))
+                            self.friends = self.friends.sorted(by: { $0.searchUserName < $1.searchUserName })
+                            print (self.friends.count)
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
                         }
-                        guard let data = document.data() else {
-                            print("Document data was empty.")
-                            return
-                        }
-                        let profileURLString = data["profileImageURL"] as? String
-                        self.friends.append(SearchUser(
-                                                searchUserName: (data["Username"] as? String)!,
-                                                searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
-                                                searchUserUID: document.documentID))
-                        self.friends = self.friends.sorted(by: { $0.searchUserName < $1.searchUserName })
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                            // print (self.friends)
-                        }
-                    }
+                }
             }
+            )
         }
-        )
-        
-                
+
         tableView.register(UINib(nibName: "FriendSessionCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     }
 }
@@ -94,11 +102,12 @@ extension HomeViewController: UITableViewDataSource {
         if editingStyle == .delete {
             
             databaseManager.deleteFriend(friends[indexPath.row].searchUserUID)
-            tableView.beginUpdates()
-            friends.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.endUpdates()
-            
+            DispatchQueue.main.async {
+                tableView.beginUpdates()
+                self.friends.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.endUpdates()
+            }
         }
     }
     

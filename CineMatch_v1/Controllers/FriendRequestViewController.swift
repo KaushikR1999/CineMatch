@@ -23,9 +23,7 @@ class FriendRequestViewController: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         tableView.reloadData()
-    
     }
     
     func loadTable() {
@@ -46,9 +44,9 @@ class FriendRequestViewController: UIViewController{
                             print("Document data was empty.")
                             return
                         }
-                        let profileURLString = document.data()!["profileImageURL"] as? String
+                        let profileURLString = data["profileImageURL"] as? String
                         self.friendRequests.append(SearchUser(
-                                                    searchUserName: (document.data()!["Username"] as? String)!,
+                                                    searchUserName: (data["Username"] as? String)!,
                                                     searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
                                                     searchUserUID: document.documentID))
                         DispatchQueue.main.async {
@@ -97,7 +95,8 @@ extension FriendRequestViewController: UITableViewDataSource, FriendReqCellDeleg
         databaseManager.acceptFriendReq(uid, callback: {
             self.loadTable()
         })
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        
     }
     
     
@@ -107,7 +106,7 @@ extension FriendRequestViewController: UITableViewDataSource, FriendReqCellDeleg
         databaseManager.declineFriendReq(uid, callback: {
             self.loadTable()
         })
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
 }
 
