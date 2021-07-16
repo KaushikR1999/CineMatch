@@ -15,5 +15,10 @@ target 'CineMatch_v1' do
   
   # Toggle Password View
   pod 'PasswordTextField'
+
+  # Movie Cards 
+  pod 'Koloda'
+  pod 'Kingfisher'
+  pod 'youtube-ios-player-helper'   
   
 end

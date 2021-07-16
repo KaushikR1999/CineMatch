@@ -24,10 +24,16 @@
 		392B930B2660DAA000686C41 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B930A2660DAA000686C41 /* HomeViewController.swift */; };
 		392B930D2660E13500686C41 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B930C2660E13500686C41 /* ProfileViewController.swift */; };
 		392B930F2660E19B00686C41 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B930E2660E19B00686C41 /* SearchViewController.swift */; };
-		392B9315266103C200686C41 /* MovieSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B9314266103C200686C41 /* MovieSwipeViewController.swift */; };
-		392B9317266103CE00686C41 /* MovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B9316266103CE00686C41 /* MovieInfoViewController.swift */; };
 		392B931926611AC900686C41 /* MovieMatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392B931826611AC900686C41 /* MovieMatchesViewController.swift */; };
 		93E4D04FF49D4A81E113F5E3 /* Pods_CineMatch_v1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3933FDB22B3CDB6FF3ECF56 /* Pods_CineMatch_v1.framework */; };
+		B10348EE26A16D61003B9C20 /* MovieCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10348ED26A16D61003B9C20 /* MovieCards.swift */; };
+		B10348F626A16DBA003B9C20 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10348F526A16DBA003B9C20 /* ApiService.swift */; };
+		B10348FB26A16E12003B9C20 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10348FA26A16E12003B9C20 /* CardViewModel.swift */; };
+		B10348FF26A16E29003B9C20 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10348FE26A16E29003B9C20 /* CardViewController.swift */; };
+		B103490226A171BD003B9C20 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B103490126A171BD003B9C20 /* MovieDetailsViewController.swift */; };
+		B103490A26A186A6003B9C20 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B103490826A186A6003B9C20 /* MyCollectionViewCell.swift */; };
+		B103490B26A186A6003B9C20 /* MyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B103490926A186A6003B9C20 /* MyCollectionViewCell.xib */; };
+		B103490E26A186F3003B9C20 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B103490D26A186F3003B9C20 /* CollectionViewController.swift */; };
 		B12ACB462682088300EDBBD9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12ACB452682088300EDBBD9 /* DatabaseManager.swift */; };
 		B16E81AB267DA78800045056 /* CountryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16E81AA267DA78800045056 /* CountryManager.swift */; };
 /* End PBXBuildFile section */
@@ -52,12 +58,18 @@
 		392B930A2660DAA000686C41 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		392B930C2660E13500686C41 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		392B930E2660E19B00686C41 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		392B9314266103C200686C41 /* MovieSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSwipeViewController.swift; sourceTree = "<group>"; };
-		392B9316266103CE00686C41 /* MovieInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoViewController.swift; sourceTree = "<group>"; };
 		392B931826611AC900686C41 /* MovieMatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMatchesViewController.swift; sourceTree = "<group>"; };
 		3BB3476C801139DD1FB5AB40 /* Pods-CineMatch_v1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineMatch_v1.release.xcconfig"; path = "Target Support Files/Pods-CineMatch_v1/Pods-CineMatch_v1.release.xcconfig"; sourceTree = "<group>"; };
 		561D04CA5DDDECE131D6AC23 /* Pods-CineMatch_v1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineMatch_v1.debug.xcconfig"; path = "Target Support Files/Pods-CineMatch_v1/Pods-CineMatch_v1.debug.xcconfig"; sourceTree = "<group>"; };
 		A3933FDB22B3CDB6FF3ECF56 /* Pods_CineMatch_v1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineMatch_v1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10348ED26A16D61003B9C20 /* MovieCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCards.swift; sourceTree = "<group>"; };
+		B10348F526A16DBA003B9C20 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		B10348FA26A16E12003B9C20 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		B10348FE26A16E29003B9C20 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		B103490126A171BD003B9C20 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		B103490826A186A6003B9C20 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		B103490926A186A6003B9C20 /* MyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyCollectionViewCell.xib; sourceTree = "<group>"; };
+		B103490D26A186F3003B9C20 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		B12ACB452682088300EDBBD9 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		B16E81AA267DA78800045056 /* CountryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,8 +127,10 @@
 				392B92E92660A53600686C41 /* AppDelegate.swift */,
 				392B92EB2660A53600686C41 /* SceneDelegate.swift */,
 				396BB8732673899600D9BC8E /* Model */,
+				B10348F926A16E04003B9C20 /* ViewModel */,
 				392B93042660C29400686C41 /* Views */,
 				392B93052660C2B500686C41 /* Controllers */,
+				B10348F426A16DA6003B9C20 /* Networking */,
 				392B92F22660A53700686C41 /* Assets.xcassets */,
 				392B92F42660A53700686C41 /* LaunchScreen.storyboard */,
 				392B92F72660A53700686C41 /* Info.plist */,
@@ -133,6 +147,8 @@
 				39064E6626797F3D008E9876 /* FriendSessionCell.xib */,
 				391373FC2684E14500C9943B /* FriendReqCell.swift */,
 				391373FD2684E14500C9943B /* FriendReqCell.xib */,
+				B103490826A186A6003B9C20 /* MyCollectionViewCell.swift */,
+				B103490926A186A6003B9C20 /* MyCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -145,10 +161,11 @@
 				392B930C2660E13500686C41 /* ProfileViewController.swift */,
 				392B930A2660DAA000686C41 /* HomeViewController.swift */,
 				392B930E2660E19B00686C41 /* SearchViewController.swift */,
-				392B9314266103C200686C41 /* MovieSwipeViewController.swift */,
-				392B9316266103CE00686C41 /* MovieInfoViewController.swift */,
 				392B931826611AC900686C41 /* MovieMatchesViewController.swift */,
 				391374002684E8A400C9943B /* FriendRequestViewController.swift */,
+				B10348FE26A16E29003B9C20 /* CardViewController.swift */,
+				B103490126A171BD003B9C20 /* MovieDetailsViewController.swift */,
+				B103490D26A186F3003B9C20 /* CollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -156,11 +173,36 @@
 		396BB8732673899600D9BC8E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B10348EC26A16D51003B9C20 /* Movies */,
 				39064E692679AEEB008E9876 /* SearchUser.swift */,
 				B16E81AA267DA78800045056 /* CountryManager.swift */,
 				B12ACB452682088300EDBBD9 /* DatabaseManager.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B10348EC26A16D51003B9C20 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				B10348ED26A16D61003B9C20 /* MovieCards.swift */,
+			);
+			path = Movies;
+			sourceTree = "<group>";
+		};
+		B10348F426A16DA6003B9C20 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B10348F526A16DBA003B9C20 /* ApiService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B10348F926A16E04003B9C20 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B10348FA26A16E12003B9C20 /* CardViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				391373FF2684E14500C9943B /* FriendReqCell.xib in Resources */,
+				B103490B26A186A6003B9C20 /* MyCollectionViewCell.xib in Resources */,
 				392B92F62660A53700686C41 /* LaunchScreen.storyboard in Resources */,
 				392B92F32660A53700686C41 /* Assets.xcassets in Resources */,
 				39064E6E267A5620008E9876 /* GoogleService-Info.plist in Resources */,
@@ -280,19 +323,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B103490226A171BD003B9C20 /* MovieDetailsViewController.swift in Sources */,
 				392B930D2660E13500686C41 /* ProfileViewController.swift in Sources */,
 				39064E6A2679AEEB008E9876 /* SearchUser.swift in Sources */,
 				B12ACB462682088300EDBBD9 /* DatabaseManager.swift in Sources */,
-				392B9317266103CE00686C41 /* MovieInfoViewController.swift in Sources */,
+				B10348FF26A16E29003B9C20 /* CardViewController.swift in Sources */,
 				391374012684E8A400C9943B /* FriendRequestViewController.swift in Sources */,
 				39064E6726797F3D008E9876 /* SearchUserSessionCell.swift in Sources */,
 				392B931926611AC900686C41 /* MovieMatchesViewController.swift in Sources */,
+				B103490A26A186A6003B9C20 /* MyCollectionViewCell.swift in Sources */,
 				392B930F2660E19B00686C41 /* SearchViewController.swift in Sources */,
+				B103490E26A186F3003B9C20 /* CollectionViewController.swift in Sources */,
 				B16E81AB267DA78800045056 /* CountryManager.swift in Sources */,
-				392B9315266103C200686C41 /* MovieSwipeViewController.swift in Sources */,
+				B10348EE26A16D61003B9C20 /* MovieCards.swift in Sources */,
+				B10348FB26A16E12003B9C20 /* CardViewModel.swift in Sources */,
 				392B930B2660DAA000686C41 /* HomeViewController.swift in Sources */,
 				392B92EE2660A53600686C41 /* LoginViewController.swift in Sources */,
 				392B92EA2660A53600686C41 /* AppDelegate.swift in Sources */,
+				B10348F626A16DBA003B9C20 /* ApiService.swift in Sources */,
 				391373FE2684E14500C9943B /* FriendReqCell.swift in Sources */,
 				392B93092660CA0A00686C41 /* SignUpViewController.swift in Sources */,
 				392B92EC2660A53600686C41 /* SceneDelegate.swift in Sources */,

@@ -27,6 +27,33 @@ struct DatabaseManager {
         }
     }
     
+    
+    func getSharedMovieIDS(friend: String, completion: @escaping ([Int]) -> Void) {
+        
+        currentUserDetails.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if let movieIDs = document.data()!["LikedMovieIDs"] as? [Int] {
+                    
+                    let searchUserDetails = Firestore.firestore()
+                        .collection("User Details").document(friend)
+                    
+                    searchUserDetails.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            if let friendMovieIDS = document.data()!["LikedMovieIDs"] as? [Int] {
+                                
+                                let sharedMovieIDS: [Int] = Set(movieIDs).filter(Set(friendMovieIDS).contains)
+                                completion(sharedMovieIDS)
+                                
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+    
     func deleteFriend(_ SearchUserUID: String) {
         
         if currentUser != nil {

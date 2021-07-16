@@ -303,6 +303,9 @@ PODS:
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
   - IQKeyboardManagerSwift (6.5.0)
+  - Kingfisher (6.3.0)
+  - Koloda (5.0.1):
+    - pop (~> 1.0)
   - leveldb-library (1.22.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -310,14 +313,19 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PasswordTextField (1.2.0)
+  - pop (1.0.12)
   - PromisesObjC (1.2.12)
+  - youtube-ios-player-helper (1.0.3)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
   - IQKeyboardManagerSwift (= 6.5.0)
+  - Kingfisher
+  - Koloda
   - PasswordTextField
+  - youtube-ios-player-helper
 
 SPEC REPOS:
   trunk:
@@ -335,10 +343,14 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
+    - Kingfisher
+    - Koloda
     - leveldb-library
     - nanopb
     - PasswordTextField
+    - pop
     - PromisesObjC
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -355,11 +367,15 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   IQKeyboardManagerSwift: 6cd19976c6e871907c4ed9127c2d3affdd4defc2
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PasswordTextField: 2548de43f150fc90a014da47b0d97e31aada4b94
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  youtube-ios-player-helper: 0185c57db23c80d63d6ca11251d110abb8a4ca61
 
-PODFILE CHECKSUM: ec1e24a36126f68a98012c0fb72d97e6ac226d56
+PODFILE CHECKSUM: 449239b389c4a0608d22d565a8907c7e0cb12e8f
 
 COCOAPODS: 1.10.1

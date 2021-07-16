@@ -118,7 +118,9 @@ class SignUpViewController: UIViewController {
                              "profileImageURL": "",
                              "Friends": [String](),
                              "FriendRequestsSent": [String](),
-                             "FriendRequestsReceived": [String]()
+                             "FriendRequestsReceived": [String](),
+                             "totalCardIndex": 0,
+                             "LikedMovieIDs": [Int?]()
                             ]
                         )
                         

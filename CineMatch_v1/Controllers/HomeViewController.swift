@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         tableView.dataSource = self
+        tableView.delegate = self 
         // loadTable()
     }
     
@@ -57,7 +58,7 @@ class HomeViewController: UIViewController {
                                 print("Document data was empty.")
                                 return
                             }
-                            print (x)
+                            //print (x)
                             x = x+1
                             let profileURLString = data["profileImageURL"] as? String
                             self.friends.append(SearchUser(
@@ -65,7 +66,7 @@ class HomeViewController: UIViewController {
                                                     searchUserImage: self.databaseManager.retrieveProfilePic(profileURLString!),
                                                     searchUserUID: document.documentID))
                             self.friends = self.friends.sorted(by: { $0.searchUserName < $1.searchUserName })
-                            print (self.friends.count)
+                            //print (self.friends.count)
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
                             }
@@ -81,7 +82,7 @@ class HomeViewController: UIViewController {
 
 // MARK: - TableView DataSource Methods
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
@@ -92,7 +93,25 @@ extension HomeViewController: UITableViewDataSource {
         cell.searchUserImage.image = friends[indexPath.row].searchUserImage
  
         return cell
+        
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let friend = friends[indexPath.row]
+        //friend.getSharedMovies
+        
+        
+        
+        databaseManager.getSharedMovieIDS(friend: friend.searchUserUID) {movieIDS in
+            let collectionVC = self.storyboard?.instantiateViewController(identifier: "CollectionViewController") as! CollectionViewController
+            collectionVC.sharedMovieIDs = movieIDS
+            self.navigationController?.pushViewController(collectionVC, animated: true)
+
+        }
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
