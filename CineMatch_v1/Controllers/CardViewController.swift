@@ -40,12 +40,12 @@ class CardViewController: UIViewController {
             
             self.totalCardIndex = tci
             let totalCardNumber = self.totalCardIndex + 1
-            let pageNumber = (totalCardNumber / 20) + 1
+            self.pageNumber = (totalCardNumber / 20) + 1
             let cardNumberOnPage = self.totalCardIndex % 20
             
 
             
-            self.loadMovieCards(page: pageNumber) { movieCardDetails in
+            self.loadMovieCards(page: self.pageNumber) { movieCardDetails in
                 self.cards = movieCardDetails
     
                 self.cards.removeFirst(cardNumberOnPage)
@@ -154,10 +154,14 @@ extension CardViewController: KolodaViewDelegate, KolodaViewDataSource {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         pageNumber += 1
-        loadMovieCards(page: pageNumber) { movieCardDetails in
-            self.cards = movieCardDetails
-            koloda.resetCurrentCardIndex()
+        print(pageNumber)
+        DispatchQueue.main.async {
+            self.loadMovieCards(page: self.pageNumber) { movieCardDetails in
+                self.cards = movieCardDetails
+                koloda.resetCurrentCardIndex()
+            }
         }
+
     }
     
     
