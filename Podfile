@@ -1,24 +1,23 @@
-platform :ios, '13.1'
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0'
 
-target 'CineMatch_v1' do
+target 'CineMatch_v2' do
+  # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for CineMatch_v1
-  
-  # Firebase
+  # Pods for CineMatch_v2
+
+  # Firebase 
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-  pod 'Firebase/Storage' 
-  
-  # Keyboard Manager
-  pod 'IQKeyboardManagerSwift', '6.5.0'
-  
-  # Toggle Password View
-  pod 'PasswordTextField'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'FirebaseUI/Storage' 
 
-  # Movie Cards 
-  pod 'Koloda'
+  # Movie Swiping 
   pod 'Kingfisher'
-  pod 'youtube-ios-player-helper'   
-  
+  pod 'Koloda'
+  pod 'youtube-ios-player-helper' 
+
 end
