@@ -140,7 +140,6 @@ extension CardViewController: KolodaViewDelegate, KolodaViewDataSource {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         pageNumber += 1
-        print(pageNumber)
         DispatchQueue.main.async {
             self.loadMovieCards(page: self.pageNumber) { movieCardDetails in
                 self.cards = movieCardDetails

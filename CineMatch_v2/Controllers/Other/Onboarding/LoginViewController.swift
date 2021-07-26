@@ -65,7 +65,6 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 
                 if success {
-                    print(success)
                     self.performSegue(withIdentifier: "loginToHome", sender: self)
                 }
                 else {

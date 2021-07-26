@@ -12,6 +12,8 @@
 		B11E047A26A67F8300A12D52 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11E047826A67F8300A12D52 /* FriendsTableViewCell.swift */; };
 		B11E047B26A67F8300A12D52 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B11E047926A67F8300A12D52 /* FriendsTableViewCell.xib */; };
 		B11E047F26A6890900A12D52 /* HomeTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11E047E26A6890900A12D52 /* HomeTableModel.swift */; };
+		B17BC31B26AEB80000F6870D /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BC31A26AEB80000F6870D /* CreateGroupViewController.swift */; };
+		B17BC31E26AEB80A00F6870D /* GroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BC31D26AEB80A00F6870D /* GroupCollectionViewController.swift */; };
 		B17C441A26A94FC50025259C /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17C441926A94FC50025259C /* ApiService.swift */; };
 		B17C442026A9D75C0025259C /* MovieCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17C441F26A9D75C0025259C /* MovieCollectionViewController.swift */; };
 		B17C442526A9D7910025259C /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17C442326A9D7910025259C /* MovieCollectionViewCell.swift */; };
@@ -37,6 +39,9 @@
 		B1D73EF226A0AAB500B70DF1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D73EF126A0AAB500B70DF1 /* AuthManager.swift */; };
 		B1D73EF526A0AAED00B70DF1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D73EF426A0AAED00B70DF1 /* StorageManager.swift */; };
 		B1D73EFC26A0B28900B70DF1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D73EFB26A0B28800B70DF1 /* Extensions.swift */; };
+		B1F3778726AEBAD7001497ED /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3778626AEBAD7001497ED /* GroupViewController.swift */; };
+		B1F377C726AECEFA001497ED /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F377C526AECEFA001497ED /* GroupTableViewCell.swift */; };
+		B1F377C826AECEFA001497ED /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F377C626AECEFA001497ED /* GroupTableViewCell.xib */; };
 		B3F21306DDF3B4FF1EF1A593 /* Pods_CineMatch_v2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5433D03E06075851BC2C4DF /* Pods_CineMatch_v2.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +52,8 @@
 		B11E047826A67F8300A12D52 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		B11E047926A67F8300A12D52 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
 		B11E047E26A6890900A12D52 /* HomeTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableModel.swift; sourceTree = "<group>"; };
+		B17BC31A26AEB80000F6870D /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		B17BC31D26AEB80A00F6870D /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
 		B17C441926A94FC50025259C /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		B17C441F26A9D75C0025259C /* MovieCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewController.swift; sourceTree = "<group>"; };
 		B17C442326A9D7910025259C /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -74,6 +81,9 @@
 		B1D73EF126A0AAB500B70DF1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		B1D73EF426A0AAED00B70DF1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B1D73EFB26A0B28800B70DF1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B1F3778626AEBAD7001497ED /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		B1F377C526AECEFA001497ED /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		B1F377C626AECEFA001497ED /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		B5433D03E06075851BC2C4DF /* Pods_CineMatch_v2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CineMatch_v2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD03189F1D2BE152F47AAFF /* Pods-CineMatch_v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CineMatch_v2.release.xcconfig"; path = "Target Support Files/Pods-CineMatch_v2/Pods-CineMatch_v2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +133,15 @@
 				B11E047926A67F8300A12D52 /* FriendsTableViewCell.xib */,
 			);
 			path = Friends;
+			sourceTree = "<group>";
+		};
+		B17BC32626AEB85600F6870D /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				B1F377C526AECEFA001497ED /* GroupTableViewCell.swift */,
+				B1F377C626AECEFA001497ED /* GroupTableViewCell.xib */,
+			);
+			path = Groups;
 			sourceTree = "<group>";
 		};
 		B17C441826A94FB60025259C /* Networking */ = {
@@ -209,11 +228,12 @@
 			isa = PBXGroup;
 			children = (
 				B1D73E7326A0A24C00B70DF1 /* Assets.xcassets */,
+				B1D73E8526A0A2D300B70DF1 /* Storyboards */,
 				B11E047126A67F6500A12D52 /* Friends */,
 				B11E047026A67F5B00A12D52 /* Friend Requests */,
 				B1D1F0A326A560C600F2D5C6 /* Search Results */,
 				B17C442226A9D77D0025259C /* Movie Collection */,
-				B1D73E8526A0A2D300B70DF1 /* Storyboards */,
+				B17BC32626AEB85600F6870D /* Groups */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,8 +241,8 @@
 		B1D73E8326A0A2A100B70DF1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B1D73E9526A0A3D300B70DF1 /* Other */,
 				B1D73E9326A0A3C800B70DF1 /* Core Tabs */,
+				B1D73E9526A0A3D300B70DF1 /* Other */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -262,6 +282,9 @@
 				B1D73E9D26A0A41700B70DF1 /* CardViewController.swift */,
 				B1D73EA026A0A42200B70DF1 /* MovieDetailsViewController.swift */,
 				B17C441F26A9D75C0025259C /* MovieCollectionViewController.swift */,
+				B1F3778626AEBAD7001497ED /* GroupViewController.swift */,
+				B17BC31A26AEB80000F6870D /* CreateGroupViewController.swift */,
+				B17BC31D26AEB80A00F6870D /* GroupCollectionViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -335,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1D73E7726A0A24C00B70DF1 /* LaunchScreen.storyboard in Resources */,
+				B1F377C826AECEFA001497ED /* GroupTableViewCell.xib in Resources */,
 				B1D1F0A726A560DF00F2D5C6 /* SearchResultsTableViewCell.xib in Resources */,
 				B1D73EEC26A0A7DB00B70DF1 /* GoogleService-Info.plist in Resources */,
 				B17C442626A9D7910025259C /* MovieCollectionViewCell.xib in Resources */,
@@ -396,12 +420,16 @@
 			files = (
 				B17C442F26A9D7F50025259C /* CardViewModel.swift in Sources */,
 				B1D73E9826A0A3E800B70DF1 /* LoginViewController.swift in Sources */,
+				B17BC31E26AEB80A00F6870D /* GroupCollectionViewController.swift in Sources */,
+				B17BC31B26AEB80000F6870D /* CreateGroupViewController.swift in Sources */,
 				B1D73E6B26A0A24C00B70DF1 /* AppDelegate.swift in Sources */,
 				B1D73EA126A0A42200B70DF1 /* MovieDetailsViewController.swift in Sources */,
 				B1D73EF526A0AAED00B70DF1 /* StorageManager.swift in Sources */,
 				B1D73EF226A0AAB500B70DF1 /* AuthManager.swift in Sources */,
 				B1D73E6D26A0A24C00B70DF1 /* SceneDelegate.swift in Sources */,
 				B17C441A26A94FC50025259C /* ApiService.swift in Sources */,
+				B1F3778726AEBAD7001497ED /* GroupViewController.swift in Sources */,
+				B1F377C726AECEFA001497ED /* GroupTableViewCell.swift in Sources */,
 				B17C442526A9D7910025259C /* MovieCollectionViewCell.swift in Sources */,
 				B1D73E9126A0A38F00B70DF1 /* ProfileViewController.swift in Sources */,
 				B1D73E9E26A0A41700B70DF1 /* CardViewController.swift in Sources */,

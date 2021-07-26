@@ -205,7 +205,6 @@ class MovieDetailsViewController: UIViewController {
                         
                         if let stream = countryInfo.flatrate {
                             whereToStream = "Stream: "
-                            print(stream.count)
                             if stream.count == 0 {
                                 whereToStream = ""
                             }

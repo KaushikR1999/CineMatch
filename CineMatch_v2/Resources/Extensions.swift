@@ -48,7 +48,17 @@ extension Locale {
         return dictionary
 
     }
+    
+    
 }
+
+extension UITableView {
+    func deselectAllRows(animated: Bool) {
+        guard let selectedRows = indexPathsForSelectedRows else { return }
+        for indexPath in selectedRows { deselectRow(at: indexPath, animated: animated) }
+    }
+}
+
     
   
      

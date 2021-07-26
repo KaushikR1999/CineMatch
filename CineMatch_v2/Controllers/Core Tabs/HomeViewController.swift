@@ -160,6 +160,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         if indexPath.section == 1 {
             let uid = homeTables[indexPath.section].usersToDisplay[indexPath.row]["uid"] as! String
             DatabaseManager.shared.getSharedMovieIDs(with: uid) { (sharedMovieIDs) in

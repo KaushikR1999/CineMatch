@@ -97,7 +97,6 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
-        print("LOGGED OUT")
     }
     
     @objc func didTapChangeProfilePic() {

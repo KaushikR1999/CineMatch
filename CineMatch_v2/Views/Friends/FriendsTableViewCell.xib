@@ -51,6 +51,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="y2D-pP-yuP"/>
+            <color key="backgroundColor" red="0.1299092174" green="0.15618932250000001" blue="0.19608360529999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <connections>
                 <outlet property="friendProfilePicture" destination="WIE-54-b8I" id="naT-Xc-lBK"/>
                 <outlet property="friendRectangleView" destination="3OH-et-ROM" id="43j-hq-rme"/>

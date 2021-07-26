@@ -33,8 +33,9 @@ public class DatabaseManager {
                       "friends": [String](),
                       "friendRequestsSent": [String](),
                       "friendRequestsReceived": [String](),
-                      "likedMovieIds": [Int](),
-                      "totalCardIndex": 0])
+                      "likedMovieIDs": [Int](),
+                      "totalCardIndex": 0,
+                      "groups": [[String: Any]]() ])
             { (error)  in
                 if error == nil {
                     completion(true)
@@ -58,7 +59,10 @@ public class DatabaseManager {
                     return
                 }
                 
-                return completion(data["username"] as! String)
+                if let username = data["username"] as? String {
+                    completion(username)
+                }
+                
             }
         }
 
@@ -156,11 +160,16 @@ public class DatabaseManager {
                 }
                 
                 if let likedMovieIDs = data["likedMovieIDs"] as? [Int] {
+                    
                     if !likedMovieIDs.contains(id) {
                         
                         self.userDetails.document(Auth.auth().currentUser!.uid).updateData(["likedMovieIDs": FieldValue.arrayUnion([id])]) { (error) in
                             completion()
                         }
+                    }
+                } else {
+                    self.userDetails.document(Auth.auth().currentUser!.uid).updateData(["likedMovieIDs": FieldValue.arrayUnion([id])]) { (error) in
+                        completion()
                     }
                 }
                 
@@ -297,15 +306,17 @@ public class DatabaseManager {
                 return
             }
             
-            let friendRequestsReceived = data["friendRequestsReceived"] as! [String]
-            let friendRequestsSent = data["friendRequestsSent"] as! [String]
-            
-            if friendRequestsReceived.contains(uid) || friendRequestsSent.contains(uid) {
-                completion(false)
-                return
+            if let friendRequestsReceived = data["friendRequestsReceived"] as? [String],
+               let friendRequestsSent = data["friendRequestsSent"] as? [String] {
+                if friendRequestsReceived.contains(uid) || friendRequestsSent.contains(uid) {
+                    completion(false)
+                    return
+                }
+                
+                completion(true)
             }
             
-            completion(true)
+           
             
         }
         
@@ -354,8 +365,10 @@ public class DatabaseManager {
                     return
                 }
                 
-                let friendRequestsReceived = data["friendRequestsReceived"] as! [String]
-                completion(friendRequestsReceived)
+                if let friendRequestsReceived = data["friendRequestsReceived"] as? [String] {
+                    completion(friendRequestsReceived)
+
+                }
                 
             }
                         
@@ -412,8 +425,10 @@ public class DatabaseManager {
                     return
                 }
                 
-                let friends = data["friends"] as! [String]
-                completion(friends.contains(uid))
+                if let friends = data["friends"] as? [String] {
+                    completion(friends.contains(uid))
+                }
+                
             }
         }
     }
@@ -432,8 +447,10 @@ public class DatabaseManager {
                     return
                 }
                 
-                let friends = data["friends"] as! [String]
-                completion(friends)
+                if let friends = data["friends"] as? [String] {
+                    completion(friends)
+                }
+                
                 
             }
                         
@@ -441,6 +458,56 @@ public class DatabaseManager {
         
     }
     
+    public func getFriendsData(completion: @escaping ([[String: Any]]) -> Void) {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        if Auth.auth().currentUser != nil {
+            
+            userDetails.document(Auth.auth().currentUser!.uid).addSnapshotListener { (documentSnapshot, error) in
+                
+                var friendsData = [[String: Any]]()
+                
+                guard let document = documentSnapshot else {
+                    return
+                }
+                
+                guard let data = document.data() else {
+                    return
+                }
+                
+                if let friends = data["friends"] as? [String] {
+                    for friend in friends {
+                        dispatchGroup.enter()
+                        self.loadUserDetails(with: friend) { (data) in
+                            var friendData = data
+                            friendData["uid"] = friend
+                            friendsData.append(friendData)
+                            dispatchGroup.leave()
+                        }
+
+                    }
+                    
+                    dispatchGroup.notify(queue: .main) {
+                        
+                        friendsData = friendsData.sorted {
+                            $0["username"] as? String ?? ""
+                                <
+                            $1["username"] as? String ?? "" }
+                        
+                        completion(friendsData)
+
+                    }
+                }
+                
+                
+
+                
+            }
+                        
+        }
+        
+    }
     public func loadUserDetails(with uid: String, completion: @escaping ([String: Any]) -> Void) {
         
         userDetails.document(uid).getDocument { (documentSnapshot, error) in
@@ -478,54 +545,49 @@ public class DatabaseManager {
                     return
                 }
                 
-                let friendRequestsReceived = data["friendRequestsReceived"] as! [String]
+                if let friendRequestsReceived = data["friendRequestsReceived"] as? [String],
+                   let friends = data["friends"] as? [String] {
+                    for friendRequest in friendRequestsReceived {
+                        dispatchGroup.enter()
+                        self.loadUserDetails(with: friendRequest) { (data) in
+                            var friendRequestData = data
+                            friendRequestData["uid"] = friendRequest
+                            friendRequestsData.append(friendRequestData)
+                            dispatchGroup.leave()
+                        }
 
-                
-                let friends = data["friends"] as! [String]
-                
-                
-                
-                for friendRequest in friendRequestsReceived {
-                    dispatchGroup.enter()
-                    self.loadUserDetails(with: friendRequest) { (data) in
-                        var friendRequestData = data
-                        friendRequestData["uid"] = friendRequest
-                        friendRequestsData.append(friendRequestData)
-                        dispatchGroup.leave()
                     }
+                    
+                    for friend in friends {
+                        dispatchGroup.enter()
+                        self.loadUserDetails(with: friend) { (data) in
+                            var friendData = data
+                            friendData["uid"] = friend
+                            friendsData.append(friendData)
+                            dispatchGroup.leave()
+                        }
 
-                }
-                
-                for friend in friends {
-                    dispatchGroup.enter()
-                    self.loadUserDetails(with: friend) { (data) in
-                        var friendData = data
-                        friendData["uid"] = friend
-                        friendsData.append(friendData)
-                        dispatchGroup.leave()
                     }
-
-                }
-            
-                dispatchGroup.notify(queue: .main) {
-                    
-                    friendRequestsData = friendRequestsData.sorted {
-                        $0["username"] as? String ?? ""
-                            <
-                        $1["username"] as? String ?? "" }
-                    
-                    friendsData = friendsData.sorted {
-                        $0["username"] as? String ?? ""
-                            <
-                        $1["username"] as? String ?? "" }
-                    
-                    completion([friendRequestsData, friendsData])
+                
+                    dispatchGroup.notify(queue: .main) {
+                        
+                        friendRequestsData = friendRequestsData.sorted {
+                            $0["username"] as? String ?? ""
+                                <
+                            $1["username"] as? String ?? "" }
+                        
+                        friendsData = friendsData.sorted {
+                            $0["username"] as? String ?? ""
+                                <
+                            $1["username"] as? String ?? "" }
+                        
+                        completion([friendRequestsData, friendsData])
+                    }
                 }
 
             }
         }
     }
-    
     public func deleteFriend(with uid: String, completion: @escaping () -> Void) {
         
         if Auth.auth().currentUser != nil {
@@ -575,7 +637,244 @@ public class DatabaseManager {
         }
     }
     
-
     
+    public func createGroup(with groupName: String, groupMembers: [String], completion: @escaping (Bool) -> Void) {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        if Auth.auth().currentUser != nil {
+            
+            var allMembers = [String]()
+            
+            allMembers = groupMembers
+            allMembers.append(Auth.auth().currentUser!.uid)
+            
+            var groupInfo = [String: Any]()
+            groupInfo["name"] = groupName
+            groupInfo["members"] = allMembers
+            groupInfo["creator"] = Auth.auth().currentUser!.uid
+            
+            userDetails.document(Auth.auth().currentUser!.uid).updateData(["groups": FieldValue.arrayUnion([groupInfo])])
+            
+            for member in groupMembers {
+                dispatchGroup.enter()
+                userDetails.document(member).updateData(["groups": FieldValue.arrayUnion([groupInfo])]) { (error) in
+                    if error == nil {
+                        dispatchGroup.leave()
+                    } else {
+                        completion(false)
+                    }
+                }
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                completion(true)
+            }
+            
+        }
+        
+    }
+    
+    public func getGroups(completion: @escaping ([[String:Any]]) -> Void) {
+        
+        if Auth.auth().currentUser != nil {
+            
+            userDetails.document(Auth.auth().currentUser!.uid).addSnapshotListener { (documentSnapshot, error) in
+                
+                guard let document = documentSnapshot else {
+                    return
+                }
+                
+                guard let data = document.data() else {
+                    return
+                }
+                
+                if let groups = data["groups"] as? [[String: Any]] {
+                    
+                    completion(groups)
+                }
+                
+                
+            }
+        }
+    }
+    
+    public func getGroupMembers(with members: [String], completion: @escaping ([String]) -> Void) {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        if Auth.auth().currentUser != nil {
+            
+            var usernames = [String]()
+            
+            
+            for member in members {
+                
+                dispatchGroup.enter()
+                userDetails.document(member).getDocument { (documentSnapshot, error) in
+                    guard let document = documentSnapshot else {
+                        return
+                    }
+                    
+                    guard let data = document.data() else {
+                        return
+                    }
+                    
+                    if let username = data["username"] as? String {
+                        
+                        usernames.append(username)
+                        dispatchGroup.leave()
+                    } else {
+                        dispatchGroup.leave()
+                    }
+                }
+                
+                
+            }
+            
+            
+        
+            dispatchGroup.notify(queue: .main) {
+                
+                completion(usernames)
+            }
+            
+            
+            
+        }
+    }
+    
+    public func getSharedMovieIDsGroup(with members: [String], completion: @escaping ([Int]) -> Void) {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        if Auth.auth().currentUser != nil {
+            
+            var movieIDs = [Int]()
+            
+            for member in members {
+                
+                dispatchGroup.enter()
+                print(member)
+                userDetails.document(member).getDocument { (documentSnapshot, error) in
+                    guard let document = documentSnapshot else {
+                        return
+                    }
+                    
+                    guard let data = document.data() else {
+                        return
+                    }
+                    
+                    if let likedMovieIDs = data["likedMovieIDs"] as? [Int] {
+                        print("likedMovieIDs: \(likedMovieIDs)")
+                        movieIDs.append(contentsOf: likedMovieIDs)
+                        dispatchGroup.leave()
+                    } else {
+                        dispatchGroup.leave()
+                    }
+                }
+                
+                
+            }
+            
+            
+            
+            
+            dispatchGroup.notify(queue: .main) {
+                print(movieIDs)
+                let sharedMovieIDs = Array(Dictionary(grouping: movieIDs, by: {$0}).filter { $1.count == members.count }.keys)
+                print(sharedMovieIDs)
+                completion(sharedMovieIDs)
+            }
+            
+            
+            
+        }
+    }
+    
+    public func isGroupCreator(with creator: String, completion: @escaping (Bool) -> Void) {
+        if Auth.auth().currentUser != nil {
+            let uid = Auth.auth().currentUser!.uid
+            completion(uid == creator)
+        }
+    }
+    
+    public func removeGroup(with group: [String: Any], isCreator: Bool, completion: @escaping (Bool) -> Void) {
+        
+        let dispatchGroup = DispatchGroup()
+        
+        if Auth.auth().currentUser != nil {
+            
+            let members = group["members"] as? [String]
+            
+            if isCreator {
+                
+                if let members = members {
+                    
+                    for member in members {
+                        dispatchGroup.enter()
+                        userDetails.document(member).updateData(["groups": FieldValue.arrayRemove([group])]) { (error) in
+                            if error == nil {
+                                dispatchGroup.leave()
+                            } else {
+                                completion(false)
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            
+            else {
+                
+                if let members = members {
+                    
+                    for member in members {
+                        
+                        dispatchGroup.enter()
+                        
+                        if member == Auth.auth().currentUser!.uid {
+                            userDetails.document(member).updateData(["groups": FieldValue.arrayRemove([group])]) { (error) in
+                                if error == nil {
+                                    dispatchGroup.leave()
+                                } else {
+                                    completion(false)
+                                }
+                            }
+                        } else {
+                            var newGroup = group
+                            let newMembers = members.filter{$0 != Auth.auth().currentUser!.uid}
+                            newGroup["members"] = newMembers
+                            userDetails.document(member).updateData(["groups": FieldValue.arrayRemove([group])]) { (error) in
+                                if error == nil {
+                                    self.userDetails.document(member).updateData(["groups": FieldValue.arrayUnion([newGroup])]) { (error) in
+                                        
+                                        if error == nil {
+                                            dispatchGroup.leave()
+                                        } else {
+                                            completion(false)
+                                        }
+                                        
+                                        
+                                    }
+                                } else {
+                                    completion(false)
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                completion(true)
+            }
+            
+        }
+    }
 }
 
