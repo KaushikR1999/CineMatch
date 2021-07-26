@@ -17,16 +17,15 @@ App is in the development stage
 
 # Tech Stack
 
-- iOS Storyboard
-- Firebase
+- Swift with iOS Storyboarding (Frontend)
+- Google Firebase Storage + Cloud Firestore Database (Backend)
 
 # **How to Setup**
 
 1. To use CineMatch, clone from Github. Open XCode and click “Clone an existing project” and paste the repository URL. 
 2. If the following message shows up when running the simulator:  “"No supported iOS devices are available. Connect a device to run your application or choose a simulated device as the destination”, check if XCode version is up to date. Else, change iOS version to relevant version (i.e. 14.3 or lower)
-3. On the top left corner of XCode, change the iOS Simulator to iPhone 11 for optimal experience.
-4. Build and run the project
-5. Below are the relevant descriptions of each page of the app to support new users
+3. Build and run the project
+4. Below are the relevant descriptions of each page of the app to support new users
 
 # **Features**
 
@@ -91,13 +90,19 @@ App is in the development stage
 
 | Buttons     | Functions   |
 | ----------- | ----------- |
-| Home     | -       |
+| Home  (Displays number of friend requests if present in red badge)   | -       |
 | Search   | Leads to Search Page        |
 | Profile     | Leads to Profile page       |
-| Friend Requests   | Leads to Friend Requests Page        |
+| Group   | Leads to Group Page        |
 | Swipe   | Leads to Movie Swipe Page        |
 | Friends     | Leads to Matches Page      |
+| Add button on respective friend request     | Accepts friend request of user       |
+| Decline button on respective friend request     | Declines friend request of user       |
 
+| Label    | Functions   |
+| ----------- | ----------- |
+| Friends    | List of friends of User       |
+| Friend Requests    | List of friend requests received by User       |
 
 **Search Page**
 
@@ -110,9 +115,9 @@ App is in the development stage
 | Profile     | Leads to Profile page       |
 | Add button on respective user (displayed only if users are not friends)  | Sends friend request to user if users are not friends / friend request not sent before   |
 
-**Friend Requests Page**
+**Group Page**
 
-*Friend Requests Received displayed here (Username & Profile Picture of other user serve as labels)*
+*Groups displayed here (Group Name serves as labels)*
 
 | Buttons     | Functions   |
 | ----------- | ----------- |
@@ -120,8 +125,35 @@ App is in the development stage
 | Search   | Leads to Search Page        |
 | Profile     | Leads to Profile page       |
 | Back   | Returns to Home Page       |
-| Add button on respective friend request     | Accepts friend request of user       |
-| Decline button on respective friend request     | Declines friend request of user       |
+| Groups     | Leads to Group Matches Page       |
+| Create Group     | Leads to CreateGroup Page       |
+
+**CreateGroup Page**
+
+*Add friends to create new group*
+
+| Buttons     | Functions   |
+| ----------- | ----------- |
+| Friend     | Click on bubble beside friend to add friend to group       |
+| Cancel   | Returns to Group Page without creating new group        |
+| Create     | Creates new group & returns to Group Page       |
+
+| Text field     | Function   |
+| ----------- | ----------- |
+| Group Name     | User is to fill in group name       |
+
+**Group Matches Page**
+
+*Matches displayed here*
+
+| Buttons     | Functions   |
+| ----------- | ----------- |
+| Home     | Leads to Home Page       |
+| Search   | Leads to Search Page        |
+| Profile     | Leads to Profile page       |
+| Back   | Returns to Group Page       |
+| Info     | Shows members of group in pop up bubble       |
+| Movies (Matches made during session)      | Leads to relevant Movie Info Page       |
 
 **Movie Matches Page**
 
@@ -138,14 +170,13 @@ App is in the development stage
 **Movie Swipe Page**
 
 *User swipes left on movies they don’t like, & right on movie they do like*
-*Button on top right hand corner displays number of matches made during session*
 
 | Buttons     | Functions   |
 | ----------- | ----------- |
 | Home     | Leads to Home Page       |
 | Search   | Leads to Search Page        |
 | Profile     | Leads to Profile page       |
-| Back   | Returns to Past Sessions Info Page       |
+| Back   | Returns to Home Page       |
 | Movie      | Leads to relevant Movie Info Page       |
 
 **Movie Info Page**
@@ -154,7 +185,4 @@ App is in the development stage
 
 | Buttons     | Functions   |
 | ----------- | ----------- |
-| Home     | Leads to Home Page       |
-| Search   | Leads to Search Page        |
-| Profile     | Leads to Profile page       |
-| Back   | Returns to Past Sessions Info Page       |
+| Back   | Returns to Movie Swipe Page       |
