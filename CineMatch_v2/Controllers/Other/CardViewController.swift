@@ -55,7 +55,7 @@ class CardViewController: UIViewController {
     }
     
     private func loadMovieCards(page: Int, completion: @escaping (([MovieCard]) ->Void )) {
-        CardViewModel.shared.fetchMovieCards(page: page) { movieCardDetails in
+        CardViewModel.shared.getMovieCards(page: page) { movieCardDetails in
             completion(movieCardDetails)
         }
     }
@@ -97,7 +97,7 @@ extension CardViewController: KolodaViewDelegate, KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
         
         let movieCard = cards[index]
-        CardViewModel.shared.fetchMovieDetails(id: movieCard.id!) { movieDetails in
+        CardViewModel.shared.getMovieDetails(id: movieCard.id!) { movieDetails in
             let rootVC = self.storyboard?.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
             
             rootVC.movieDetails = movieDetails

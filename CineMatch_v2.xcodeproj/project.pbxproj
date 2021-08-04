@@ -12,9 +12,10 @@
 		B11E047A26A67F8300A12D52 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11E047826A67F8300A12D52 /* FriendsTableViewCell.swift */; };
 		B11E047B26A67F8300A12D52 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B11E047926A67F8300A12D52 /* FriendsTableViewCell.xib */; };
 		B11E047F26A6890900A12D52 /* HomeTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11E047E26A6890900A12D52 /* HomeTableModel.swift */; };
+		B124002026BA56EB009C6F55 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124001F26BA56EB009C6F55 /* Constants.swift */; };
 		B17BC31B26AEB80000F6870D /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BC31A26AEB80000F6870D /* CreateGroupViewController.swift */; };
 		B17BC31E26AEB80A00F6870D /* GroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BC31D26AEB80A00F6870D /* GroupCollectionViewController.swift */; };
-		B17C441A26A94FC50025259C /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17C441926A94FC50025259C /* ApiService.swift */; };
+		B17C441A26A94FC50025259C /* TMDBApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17C441926A94FC50025259C /* TMDBApi.swift */; };
 		B17C442026A9D75C0025259C /* MovieCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17C441F26A9D75C0025259C /* MovieCollectionViewController.swift */; };
 		B17C442526A9D7910025259C /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17C442326A9D7910025259C /* MovieCollectionViewCell.swift */; };
 		B17C442626A9D7910025259C /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17C442426A9D7910025259C /* MovieCollectionViewCell.xib */; };
@@ -52,9 +53,10 @@
 		B11E047826A67F8300A12D52 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		B11E047926A67F8300A12D52 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
 		B11E047E26A6890900A12D52 /* HomeTableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableModel.swift; sourceTree = "<group>"; };
+		B124001F26BA56EB009C6F55 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B17BC31A26AEB80000F6870D /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		B17BC31D26AEB80A00F6870D /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
-		B17C441926A94FC50025259C /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		B17C441926A94FC50025259C /* TMDBApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBApi.swift; sourceTree = "<group>"; };
 		B17C441F26A9D75C0025259C /* MovieCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewController.swift; sourceTree = "<group>"; };
 		B17C442326A9D7910025259C /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		B17C442426A9D7910025259C /* MovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -147,7 +149,7 @@
 		B17C441826A94FB60025259C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				B17C441926A94FC50025259C /* ApiService.swift */,
+				B17C441926A94FC50025259C /* TMDBApi.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -220,6 +222,7 @@
 				B1D73EF126A0AAB500B70DF1 /* AuthManager.swift */,
 				B1D73EF426A0AAED00B70DF1 /* StorageManager.swift */,
 				B1D73EFB26A0B28800B70DF1 /* Extensions.swift */,
+				B124001F26BA56EB009C6F55 /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -427,7 +430,7 @@
 				B1D73EF526A0AAED00B70DF1 /* StorageManager.swift in Sources */,
 				B1D73EF226A0AAB500B70DF1 /* AuthManager.swift in Sources */,
 				B1D73E6D26A0A24C00B70DF1 /* SceneDelegate.swift in Sources */,
-				B17C441A26A94FC50025259C /* ApiService.swift in Sources */,
+				B17C441A26A94FC50025259C /* TMDBApi.swift in Sources */,
 				B1F3778726AEBAD7001497ED /* GroupViewController.swift in Sources */,
 				B1F377C726AECEFA001497ED /* GroupTableViewCell.swift in Sources */,
 				B17C442526A9D7910025259C /* MovieCollectionViewCell.swift in Sources */,
@@ -444,6 +447,7 @@
 				B11E047426A67F7700A12D52 /* FriendRequestsTableViewCell.swift in Sources */,
 				B1D73E8E26A0A38500B70DF1 /* SearchViewController.swift in Sources */,
 				B1D73E8726A0A32B00B70DF1 /* HomeViewController.swift in Sources */,
+				B124002026BA56EB009C6F55 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

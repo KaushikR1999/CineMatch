@@ -100,7 +100,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func didTapChangeProfilePic() {
-        presentPhotoActionSheet()
+        choosePhotoForProfilePic()
     }
     
 }
@@ -109,39 +109,9 @@ class ProfileViewController: UIViewController {
 
 //MARK: - ImagePicker methods
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
     
-    func presentPhotoActionSheet() {
-        let actionSheet = UIAlertController(title: "Profile Picture",
-                                            message: "How would you like to select a picture?",
-                                            preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: "Cancel",
-                                            style: .cancel,
-                                            handler: nil))
-        
-        actionSheet.addAction(UIAlertAction(title: "Take Photo",
-                                            style: .default,
-                                            handler: {[weak self] _ in
-                                                self?.presentCamera()
-                                            }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Choose Photo",
-                                            style: .default,
-                                            handler: {[weak self] _ in
-                                                self?.presentPhotoPicker()
-                                            }))
-        present(actionSheet, animated: true)
-    }
-    
-    func presentCamera() {
-        let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true)
-    }
-    
-    func presentPhotoPicker() {
+    func choosePhotoForProfilePic() {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = self

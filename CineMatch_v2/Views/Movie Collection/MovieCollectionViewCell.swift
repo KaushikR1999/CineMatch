@@ -21,7 +21,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     public func configure(with id: Int) {
         
-        CardViewModel.shared.fetchMovieDetails(id: id) { movieDetails in
+        CardViewModel.shared.getMovieDetails(id: id) { movieDetails in
             guard let posterString = movieDetails.poster_path else {
                 self.imageView.image = UIImage()
                 return

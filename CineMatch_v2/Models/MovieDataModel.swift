@@ -100,15 +100,6 @@ struct Genre: Decodable {
 }
 
 
-//struct WatchProviders: Decodable {
-//    
-//    let AR, AT, AU, BE, BR, CA, CH, CL, CO, CZ, DE, DK, EC, EE, ES,
-//        FI, FR, GB, GR, HU, ID, IE, IN, IT, JP, KR, LT, LV, MX, MY,
-//        NL, NO, NZ, PE, PH, PL, PT, RO, RU, SE, SG, TH, TR, US, VE,
-//        ZA: Country?
-//    
-//}
-
 struct Country: Decodable {
     
     let buy: [Provider]?

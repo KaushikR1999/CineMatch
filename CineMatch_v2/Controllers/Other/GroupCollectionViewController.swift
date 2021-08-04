@@ -73,7 +73,7 @@ extension GroupCollectionViewController: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let id = sharedMovieIDs[indexPath.row]
-        CardViewModel.shared.fetchMovieDetails(id: id) { movieDetails in
+        CardViewModel.shared.getMovieDetails(id: id) { movieDetails in
             let rootVC = self.storyboard?.instantiateViewController(identifier: "MovieDetailsViewController") as! MovieDetailsViewController
             
             rootVC.movieDetails = movieDetails

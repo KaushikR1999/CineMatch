@@ -7,16 +7,16 @@
 
 import Foundation
 
-class ApiService {
+class TMDBApi {
     
-    static let shared = ApiService()
+    static let shared = TMDBApi()
     
     private var dataTask: URLSessionDataTask?
         
     func getMovieCards(page: Int, completion: @escaping (Result<MovieCards, Error>) -> Void) {
         
         let popularMoviesURL =
-            "https://api.themoviedb.org/3/trending/movie/week?api_key=e520334db48c767166d997b28b432c50&page=\(page)"
+            "https://api.themoviedb.org/3/trending/movie/week?api_key=\(API_KEY)&page=\(page)"
         
         guard let url = URL(string: popularMoviesURL) else {return}
         
@@ -62,7 +62,7 @@ class ApiService {
     
     func getMovieDetails(id: Int, completion: @escaping (Result<MovieDetails, Error>) -> Void) {
         
-        let popularMoviesURL = "https://api.themoviedb.org/3/movie/\(id)?api_key=4e0be2c22f7268edffde97481d49064a&language=en-US&append_to_response=credits,videos,watch/providers"
+        let popularMoviesURL = "https://api.themoviedb.org/3/movie/\(id)?api_key=\(API_KEY)&language=en-US&append_to_response=credits,videos,watch/providers"
         
         guard let url = URL(string: popularMoviesURL) else {return}
         

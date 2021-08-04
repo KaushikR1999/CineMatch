@@ -15,10 +15,10 @@ class CardViewModel {
     
     private var movieDetails: MovieDetails?
     
-    func fetchMovieCards(page: Int, completion: @escaping([MovieCard]) -> ()) {
+    func getMovieCards(page: Int, completion: @escaping([MovieCard]) -> ()) {
         
         // weak self - prevent retain cycles
-        ApiService.shared.getMovieCards(page: page) { [weak self] (result) in
+        TMDBApi.shared.getMovieCards(page: page) { [weak self] (result) in
             
             switch result {
             case .success(let listOf):
@@ -32,10 +32,10 @@ class CardViewModel {
         
     }
     
-    func fetchMovieDetails(id: Int, completion: @escaping((MovieDetails) -> ())) {
+    func getMovieDetails(id: Int, completion: @escaping((MovieDetails) -> ())) {
         
         // weak self - prevent retain cycles
-        ApiService.shared.getMovieDetails(id: id) { [weak self] (result) in
+        TMDBApi.shared.getMovieDetails(id: id) { [weak self] (result) in
             
             switch result {
             case .success(let result):
