@@ -8,6 +8,7 @@ Kaushik Rangaraj & Kaushik Kumar
 
 - Status
 - Tech Stack
+- Video Demo
 - How to Setup
 - Features
 
@@ -19,6 +20,10 @@ App is in the development stage
 
 - Swift with iOS Storyboarding (Frontend)
 - Google Firebase Storage + Cloud Firestore Database (Backend)
+
+# Video Demo
+
+https://youtu.be/bVyVDAtu5VI
 
 # **How to Setup**
 
